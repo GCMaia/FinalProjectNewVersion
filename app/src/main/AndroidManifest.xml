@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.gabri.finalprojectnewversion">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".FoodNutrition.FoodNutritionMain" />
+
+        <!-- CBC -->
+        <activity
+            android:name=".CBCNews.CBCNewsMain"
+            android:parentActivityName=".MainActivity" />
+
+        <!-- END CBC -->
+
+        <activity android:name=".Movie.MovieInformationMain" />
+        <activity android:name=".OCTranspo.OCTranspoMain" />
+        <activity android:name=".CBCNews.CBCSavedNewsActivity" />
+        <activity android:name=".CBCNews.CBCReadNewsActivity" />
+        <activity android:name=".CBCNews.CBCNewsListFragment"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CBCNews.CBCSavedNewsActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:theme="@style/cbc_appbar"
+        android:id="@+id/cbc_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:titleTextColor="@color/colorTextLight"/>
+
+    <!--<ListView-->
+    <!--android:id="@+id/cbc_listview_newslist"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/cbc_toolbar" />-->
+
+    <FrameLayout
+        android:id="@+id/cbc_fragment_framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/cbc_toolbar">
+
+    </FrameLayout>
+
+</android.support.constraint.ConstraintLayout>

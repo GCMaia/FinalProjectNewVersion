@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Final Project</string>
+    <string name="CBCnews">CBC</string>
+    <string name="Movies">Movies   </string>
+    <string name="FoodNutrition">Nutrition </string>
+    <string name="OCtranspo">OC transpo</string>
+    <string name="CourseCode">CST2355</string>
+    <string name="OCTranspoEditText">select the bus stop</string>
+    <string name="OCTranspoButton">search</string>
+    <string name="cbc_menu_item_saved_news">Saved news</string>
+    <string name="cbc_read_news_button_read_article">Read full article</string>
+    <string name="cbc_read_news_button_save_news">Save news</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

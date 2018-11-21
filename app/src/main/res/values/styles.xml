@@ -1,0 +1,16 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+
+    </style>
+    <!--<style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar">
+
+    </style>-->
+
+    <!-- CBC -->
+    <style name="cbc_appbar" parent="android:ThemeOverlay.Material.Dark.ActionBar">
+
+    </style>
+
+</resources>
