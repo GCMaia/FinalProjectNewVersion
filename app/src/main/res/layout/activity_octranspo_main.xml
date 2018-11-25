@@ -7,6 +7,15 @@
     tools:context=".OCTranspo.OCTranspoMain">
 
 
+    <android.support.v7.widget.Toolbar
+        android:theme="@style/cbc_appbar"
+        android:id="@+id/oc_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:titleTextColor="@color/colorTextLight" />
+
     <Button
         android:id="@+id/searchButton"
         android:layout_width="match_parent"
@@ -39,6 +48,7 @@
     <EditText
         android:inputType="number"
         android:id="@+id/searchText"
+        android:layout_below="@id/oc_toolbar"
         android:hint="@string/OCTranspoEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,12 +1,19 @@
 package com.example.gabri.finalprojectnewversion.OCTranspo;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -16,8 +23,10 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
+import com.example.gabri.finalprojectnewversion.CBCNews.CBCNewsMain;
+import com.example.gabri.finalprojectnewversion.FoodNutrition.FoodNutritionMain;
+import com.example.gabri.finalprojectnewversion.Movie.MovieInformationMain;
 import com.example.gabri.finalprojectnewversion.R;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -63,11 +72,13 @@ public class OCTranspoMain extends AppCompatActivity {
         final ListView listview = findViewById(R.id.searchList);
         messageAdapter = new ListViewClassesAdapter(this);
         listview.setAdapter(messageAdapter);
+        Toolbar toolbar = findViewById(R.id.oc_toolbar);
+        toolbar.setTitle("OCTranspo");
+        setSupportActionBar(toolbar);
 
 
         searchButton = findViewById(R.id.searchButton);
         editText = findViewById(R.id.searchText);
-
 
 
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -197,8 +208,15 @@ public class OCTranspoMain extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
+
             TextView stop = findViewById(R.id.stopName);
-            stop.setText(stopNumber);
+
+
+            if (busInfoNo.size() == 0){
+                stop.setText("No buses found for this stop number");
+            } else {
+                stop.setText(stopNumber);
+            }
 
             ProgressBar loader = findViewById(R.id.loader);
             loader.setVisibility(View.INVISIBLE);
@@ -206,4 +224,74 @@ public class OCTranspoMain extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_octranspo_appbar,menu);
+        return true;
+    }
+
+
+    public boolean onOptionsItemSelected(MenuItem menuItem){
+
+        switch (menuItem.getItemId()){
+            case R.id.action_one:
+
+                AlertDialog.Builder CBCBuilder = new AlertDialog.Builder(OCTranspoMain.this);
+                CBCBuilder.setMessage("accept will take you to CBCNews main page").setTitle("Go to CBCNews main page?")
+                        .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent intent = new Intent(OCTranspoMain.this, CBCNewsMain.class);
+                                startActivity(intent);
+                            }
+                        }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) { }
+                }).show();
+
+                break;
+            case R.id.action_two:
+
+                AlertDialog.Builder movieBuilder = new AlertDialog.Builder(OCTranspoMain.this);
+                movieBuilder.setMessage("accept will take you to Movies main page").setTitle("Go to Movies main page?")
+                        .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent intent = new Intent(OCTranspoMain.this, MovieInformationMain.class);
+                                startActivity(intent);
+                            }
+                        }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) { }
+                }).show();
+
+                break;
+
+            case R.id.action_three:
+
+                AlertDialog.Builder foodBuilder = new AlertDialog.Builder(OCTranspoMain.this);
+                foodBuilder.setMessage("accept will take you to FoodNutrition main page").setTitle("Go to FoodNutrition main page?")
+                        .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent intent = new Intent(OCTranspoMain.this, FoodNutritionMain.class);
+                                startActivity(intent);
+                            }
+                        }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) { }
+                }).show();
+
+
+                break;
+            case R.id.action_four:
+
+                Toast aboutToast = Toast.makeText(OCTranspoMain.this, "activity version 1.0 by Gabriel Maia", Toast.LENGTH_SHORT);
+                aboutToast.show();
+                break;
+
+            case R.id.action_five:
+
+                AlertDialog.Builder helpBuilder = new AlertDialog.Builder(OCTranspoMain.this);
+                helpBuilder.setTitle("activity helper").setMessage("- To look for a bus stop, simply type the bus stop and press to search \n" +
+                        "\n - To save a bus, select the bus you desire, and click on the save option").show();
+
+        }
+        return true;
+    }
 }
