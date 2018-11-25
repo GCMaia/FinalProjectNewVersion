@@ -65,6 +65,39 @@ public class NewsSQLiteOpenHelper extends SQLiteOpenHelper {
         return newRowId;
     }
 
+    public int deleteNewsEntry ( News n ) {
+
+        return deleteNewsEntry(n.getTitle());
+
+//        // Gets the data repository in write mode
+//        SQLiteDatabase db = getWritableDatabase();
+//
+//        // Define 'where' part of query.
+//        String selection = NewsContract.NewsEntry.COLUMN_NAME_TITLE + " = ?";
+//        // Specify arguments in placeholder order.
+//        String[] selectionArgs = { n.getTitle() };
+//        // Issue SQL statement.
+//        int deletedRows = db.delete(NewsContract.NewsEntry.TABLE_NAME, selection, selectionArgs);
+//
+//        Log.d(TAG, "Deleted News Entry");
+//        return deletedRows;
+    }
+
+    public int deleteNewsEntry ( String newsTitle ) {
+        // Gets the data repository in write mode
+        SQLiteDatabase db = getWritableDatabase();
+
+        // Define 'where' part of query.
+        String selection = NewsContract.NewsEntry.COLUMN_NAME_TITLE + " = ?";
+        // Specify arguments in placeholder order.
+        String[] selectionArgs = { newsTitle };
+        // Issue SQL statement.
+        int deletedRows = db.delete(NewsContract.NewsEntry.TABLE_NAME, selection, selectionArgs);
+
+        Log.d(TAG, "Deleted News Entry");
+        return deletedRows;
+    }
+
     public ArrayList<News> selectAllNewsEntry ( ) {
         ArrayList<News> nl = new ArrayList<>();
 

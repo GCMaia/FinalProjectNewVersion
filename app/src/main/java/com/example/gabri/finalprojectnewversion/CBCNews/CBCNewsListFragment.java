@@ -18,9 +18,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.gabri.finalprojectnewversion.CBCNews.CBCReadNewsActivity;
-import com.example.gabri.finalprojectnewversion.CBCNews.News;
 import com.example.gabri.finalprojectnewversion.R;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -42,7 +41,7 @@ public class CBCNewsListFragment extends Fragment {
     private ProgressBar progressBar;
 
     private boolean argsGetFromDatabase;
-
+    
     public CBCNewsListFragment() {
         // Required empty public constructor
     }

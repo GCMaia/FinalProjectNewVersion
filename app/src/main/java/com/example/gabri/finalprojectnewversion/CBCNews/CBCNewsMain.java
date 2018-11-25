@@ -27,7 +27,6 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.gabri.finalprojectnewversion.CBCNews.News;
 import com.example.gabri.finalprojectnewversion.R;
 
 import org.w3c.dom.Text;
@@ -45,9 +44,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * TODO: Snackbar
- * TODO: Delete saved news
- * TODO: Toast
  * TODO: Edit Text
  * TODO: Menu help: Author, Version, Instructions
  * TODO: Summary of data
@@ -61,12 +57,8 @@ public class CBCNewsMain extends AppCompatActivity {
 
     private String TAG = "CBC-MainActivity";
 
-//    public static final String INTENT_NEWS_ID = "CBCNewsMain-Intent-News";
-//    public static final String INTENT_NEWS_BODY = "CBCNewsMain-Intent-Body";
-//    public static final String INTENT_NEWS_URL = "CBCNewsMain-Intent-Url";
-
     private List<News> newsList = new ArrayList<>();
-    //    private NewsAdapter adapterListNews;
+//    private NewsAdapter adapterListNews;
     private ProgressBar progressBar;
 
     @Override
