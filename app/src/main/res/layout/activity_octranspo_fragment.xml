@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context=".OCTranspo.BusFragmentDetails">
+
+    <ImageView
+        android:id="@+id/OCTranspoBusDetailsImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="166dp"
+        android:src="@drawable/bus" />
+
+    <TextView
+        android:id="@+id/OCTranspoDestination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/OCTranspoBusDetailsImageView"
+        android:layout_centerHorizontal="true"
+        android:text="Destination" />
+
+    <TextView
+        android:id="@+id/OCTranspoLatitudeLongitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/OCTranspoDestination"
+        android:layout_centerHorizontal="true"
+        android:text="Latitude and Longitude" />
+
+    <TextView
+        android:id="@+id/OCTRanspoSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/OCTranspoLatitudeLongitude"
+        android:text="Speed"/>
+
+    <TextView
+        android:id="@+id/OCTranspoStartTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/OCTRanspoSpeed"
+        android:text="Start time"/>
+
+    <TextView
+        android:id="@+id/OCTranspoLateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/OCTranspoStartTime"
+        android:text="Late Time"/>
+
+    <Button
+        android:id="@+id/OCTranspoSaveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Press the button to save the Route"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

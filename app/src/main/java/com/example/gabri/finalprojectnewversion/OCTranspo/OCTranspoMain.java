@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -81,6 +83,19 @@ public class OCTranspoMain extends AppCompatActivity {
         editText = findViewById(R.id.searchText);
 
 
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Intent fragmentPiece = new Intent(OCTranspoMain.this, BusFragmentDetails.class);
+                fragmentPiece.putExtra("ID", id);
+                fragmentPiece.putExtra("message", busInfoHeader.get(position));
+                fragmentPiece.putExtra("another", busInfoNo.get(position));
+                startActivityForResult(fragmentPiece, 1);
+
+            }
+        });
+        
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,8 +113,6 @@ public class OCTranspoMain extends AppCompatActivity {
                     busInfoHeader.clear();
                     busInfoNo.clear();
 
-                    Snackbar snackbar = Snackbar.make(searchButton, "Query Completed", Snackbar.LENGTH_SHORT);
-                    snackbar.show();
                 }
             }
         });
@@ -213,7 +226,7 @@ public class OCTranspoMain extends AppCompatActivity {
 
 
             if (busInfoNo.size() == 0){
-                stop.setText("No buses found for this stop number");
+                stop.setText("No buses found for this stop");
             } else {
                 stop.setText(stopNumber);
             }
@@ -221,6 +234,8 @@ public class OCTranspoMain extends AppCompatActivity {
             ProgressBar loader = findViewById(R.id.loader);
             loader.setVisibility(View.INVISIBLE);
 
+            Snackbar snackbar = Snackbar.make(searchButton, "Query Completed", Snackbar.LENGTH_SHORT);
+            snackbar.show();
         }
     }
 

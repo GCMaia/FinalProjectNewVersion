@@ -14,6 +14,7 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -28,11 +29,12 @@
             android:parentActivityName=".CBCNews.CBCNewsMain" />
         <activity
             android:name=".CBCNews.CBCReadNewsActivity"
-            android:parentActivityName=".CBCNews.CBCNewsMain"/>
+            android:parentActivityName=".CBCNews.CBCNewsMain" />
         <!-- END CBC -->
 
         <activity android:name=".Movie.MovieInformationMain" />
         <activity android:name=".OCTranspo.OCTranspoMain" />
+        <activity android:name=".OCTranspo.BusFragmentDetails"></activity>
     </application>
 
 </manifest>
