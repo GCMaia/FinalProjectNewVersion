@@ -13,6 +13,13 @@ import android.widget.TextView;
 
 import com.example.gabri.finalprojectnewversion.R;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class OCTranspoFragment extends android.app.Fragment {
     private TextView busDestination;
 
@@ -24,13 +31,11 @@ public class OCTranspoFragment extends android.app.Fragment {
 
 
     private Button saveButton;
-    private Button backButton;
     private Bundle runningBundle;
     private Context parent;
 
 
-    private String stopNumber;
-    private String routeNumber;
+
     private String nameFinalStation;
 
     @Override
@@ -46,7 +51,8 @@ public class OCTranspoFragment extends android.app.Fragment {
         View result = inflater.inflate(R.layout.activity_octranspo_fragment,container,false);
         busDestination = result.findViewById(R.id.OCTranspoDestination);
 
-
+        String stopNumber;
+        String routeNumber;
 
         saveButton = result.findViewById(R.id.OCTranspoSaveButton);
 
@@ -67,18 +73,5 @@ public class OCTranspoFragment extends android.app.Fragment {
 
 
 
-    class BusDetailQuery extends AsyncTask<String, Integer, String>{
 
-        final String OCKEY = "0fe84df9e187b080fa03ca6114c05047";
-        final String APPID = "6ded7c88";
-
-       String web = "https://api.octranspo1.com/v1.2/GetRouteSummaryForStop?appID=" + APPID +
-                "&&apiKey="+ OCKEY + "&routeNo=" + routeNumber + "&stopNo=" + stopNumber;
-
-
-        @Override
-        protected String doInBackground(String... strings) {
-            return null;
-        }
-    }
 }
