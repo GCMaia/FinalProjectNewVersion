@@ -89,8 +89,9 @@ public class OCTranspoMain extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Intent fragmentPiece = new Intent(OCTranspoMain.this, BusFragmentDetails.class);
                 fragmentPiece.putExtra("ID", id);
-                fragmentPiece.putExtra("message", busInfoHeader.get(position));
-                fragmentPiece.putExtra("another", busInfoNo.get(position));
+                fragmentPiece.putExtra("busDestination", busInfoHeader.get(position));
+                fragmentPiece.putExtra("busRouteNo", busInfoNo.get(position));
+                fragmentPiece.putExtra("stopNumber",stopNumber);
                 startActivityForResult(fragmentPiece, 1);
 
             }

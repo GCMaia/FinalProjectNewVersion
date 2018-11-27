@@ -19,9 +19,11 @@ public class BusFragmentDetails extends AppCompatActivity {
 
         OCTranspoFragment mf = new OCTranspoFragment();
         Bundle fragmentArgs = new Bundle();
-        fragmentArgs.putLong("ID",   i.getLongExtra("ID", 99)   );
-        fragmentArgs.putString("message", i.getStringExtra("message")  );
-        fragmentArgs.putBoolean("phone", true);
+
+        fragmentArgs.putString("busDestination", i.getStringExtra("busDestination")  );
+        fragmentArgs.putString("stopNumber", i.getStringExtra("stopNumber"));
+        fragmentArgs.putString("busRouteNo", i.getStringExtra("busRouteNo"));
+
         mf.setArguments(fragmentArgs);
 
         FragmentManager fm = getFragmentManager();

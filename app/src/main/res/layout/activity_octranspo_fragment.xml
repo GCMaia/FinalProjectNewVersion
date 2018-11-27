@@ -59,7 +59,7 @@
         android:id="@+id/OCTranspoSaveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Press the button to save the Route"
-        android:layout_gravity="bottom"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:text="Press the button to save the Route" />
+
 </RelativeLayout>
