@@ -127,19 +127,19 @@ public class BusFragmentDetails extends AppCompatActivity {
             super.onPostExecute(s);
 
             TextView speedView = findViewById(R.id.OCTRanspoSpeed);
-            speedView.setText(tempSpeed +" Km/h");
+            speedView.setText(String.format(getResources().getString(R.string.OCTranspoSpeed), tempSpeed));
 
             TextView latitudeView = findViewById(R.id.OCTranspoLatitude);
-            latitudeView.setText("N " + tempLatitude);
+            latitudeView.setText(String.format(getResources().getString(R.string.OCTranspoLatitude), tempLatitude));
 
             TextView longitudeView = findViewById(R.id.OCTranspoLongitude);
-            longitudeView.setText("W " + tempLongitude);
+            longitudeView.setText(String.format(getResources().getString(R.string.OCTranspoLongitude), tempLongitude));
 
             TextView startView = findViewById(R.id.OCTranspoStartTime);
-            startView.setText("Trip start time " + tempStart);
+            startView.setText(String.format(getResources().getString(R.string.OCTranspoStartTime), tempStart));
 
             TextView lateView = findViewById(R.id.OCTranspoLateTime);
-            lateView.setText("Delayed " + tempLate + " min(s)");
+            lateView.setText(String.format(getResources().getString(R.string.OCTranspoDelayedTime), tempLate));
 
         }
     }

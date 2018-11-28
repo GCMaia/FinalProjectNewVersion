@@ -19,7 +19,7 @@
         android:layout_centerVertical="true"
         android:layout_alignTop="@+id/routeHeading"
         android:layout_marginStart="64dp"
-        android:text="Bus No" />
+        android:text="@string/OCTranspoBusNo" />
 
     <TextView
         android:id="@+id/routeHeading"
@@ -29,7 +29,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="21dp"
-        android:text="route heading" />
+        android:text="@string/OCTranspoBusHeading" />
 
     <View
         android:layout_width="match_parent"

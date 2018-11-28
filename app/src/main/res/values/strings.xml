@@ -16,4 +16,36 @@
     <string name="cbc_read_news_button_delete_news">Delete</string>
     <string name="cbc_read_news_button_delete_news_after">Deleted</string>
     <string name="cbc_read_news_button_save_news_after">Saved</string>
+    <string name="noBuses">No buses found</string>
+    <string name="hasBuses">%1s - %2s</string>
+    <string name="ocQuery">query completed</string>
+    <string name="questionCBC">accept will take you to CBCNews main page</string>
+    <string name="CBCTitle">go to CBCNews main page?</string>
+    <string name="questionMovies">accept will take you to Movies main pag</string>
+    <string name="MoviesTitle">go to Movies main page?</string>
+    <string name="questionOCTranspo">accept will take you to OCTranspo main pag</string>
+    <string name="OCTranspoTitle">go to OCTranspo main page?</string>
+    <string name="questionNutrition">accept will take you to Nutrition main pag</string>
+    <string name="NutritionTitle">go to Nutrition main page?</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="OCTranspoAbout">activity version 1.0 by Gabriel Maia</string>
+    <string name="OCTranspoHelp">OCTranspo guide</string>
+    <string name="OCTranspoHelpGuide">- To look for a bus stop, simply type the bus stop and press to search \n"
+                        "\n - To save a bus, select the bus you desire, and click on the save option</string>
+    <string name="OCTranspoBusStopAndName">stop number and "name"</string>
+    <string name="OCTranspoSpeed">%1s km/h</string>
+    <string name="OCTranspoLatitude">N %1s</string>
+    <string name="OCTranspoLongitude">W %1s</string>
+    <string name="OCTranspoStartTime">Trip start time %1s</string>
+    <string name="OCTranspoDelayedTime">Delayed %1s min(s)</string>
+    <string name="OCTranspoBusHeading">Route Heading</string>
+    <string name="OCTranspoBusNo">Bus No</string>
+    <string name="OCTranspoLatitudeString">Latitude</string>
+    <string name="OCTranspoLongitudeString">Longitude</string>
+    <string name="OCTranspoDestinationString">Destination</string>
+    <string name="OCTranspoSpeedString">Speed</string>
+    <string name="OCTranspoStartString">Start Time</string>
+    <string name="OCTranspoDelayedString">Delayed Time</string>
+    <string name="OCTranspoSaveString">Press the button to save the route</string>
 </resources>

@@ -58,6 +58,7 @@ public class OCTranspoMain extends AppCompatActivity {
     String stopNumber = "";
     String tempRouteNo = "";
     String tempDestination = "";
+    String stopName = "";
 
     /**
      * method onCreate used for calling the elements being used from the referenced XML, and starts query under the required circumstances
@@ -75,7 +76,7 @@ public class OCTranspoMain extends AppCompatActivity {
         messageAdapter = new ListViewClassesAdapter(this);
         listview.setAdapter(messageAdapter);
         Toolbar toolbar = findViewById(R.id.oc_toolbar);
-        toolbar.setTitle("OCTranspo");
+        toolbar.setTitle(R.string.OCtranspo);
         setSupportActionBar(toolbar);
 
 
@@ -167,6 +168,7 @@ public class OCTranspoMain extends AppCompatActivity {
     }
 
 
+
     /**
      * Class used to run the required query to go on the provided API and get the required information
      */
@@ -203,6 +205,10 @@ public class OCTranspoMain extends AppCompatActivity {
                             xpp.next();
                             tempDestination = xpp.getText();
                         }
+                        else if (xpp.getName().equals("StopDescription")){
+                            xpp.next();
+                            stopName = xpp.getText();
+                        }
                     }
                     else if (!tempDestination.equals("") && !tempRouteNo.equals("")){
                         busInfoNo.add(tempRouteNo);
@@ -227,15 +233,15 @@ public class OCTranspoMain extends AppCompatActivity {
 
 
             if (busInfoNo.size() == 0){
-                stop.setText("No buses found for this stop");
+                stop.setText(R.string.noBuses);
             } else {
-                stop.setText(stopNumber);
+                stop.setText(String.format(getResources().getString(R.string.hasBuses), stopNumber, stopName));
             }
 
             ProgressBar loader = findViewById(R.id.loader);
             loader.setVisibility(View.INVISIBLE);
 
-            Snackbar snackbar = Snackbar.make(searchButton, "Query Completed", Snackbar.LENGTH_SHORT);
+            Snackbar snackbar = Snackbar.make(searchButton, R.string.ocQuery, Snackbar.LENGTH_SHORT);
             snackbar.show();
         }
     }
@@ -254,13 +260,13 @@ public class OCTranspoMain extends AppCompatActivity {
             case R.id.action_one:
 
                 AlertDialog.Builder CBCBuilder = new AlertDialog.Builder(OCTranspoMain.this);
-                CBCBuilder.setMessage("accept will take you to CBCNews main page").setTitle("Go to CBCNews main page?")
-                        .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                CBCBuilder.setMessage(R.string.questionCBC).setTitle(R.string.CBCTitle)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent intent = new Intent(OCTranspoMain.this, CBCNewsMain.class);
                                 startActivity(intent);
                             }
-                        }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+                        }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) { }
                 }).show();
 
@@ -268,13 +274,13 @@ public class OCTranspoMain extends AppCompatActivity {
             case R.id.action_two:
 
                 AlertDialog.Builder movieBuilder = new AlertDialog.Builder(OCTranspoMain.this);
-                movieBuilder.setMessage("accept will take you to Movies main page").setTitle("Go to Movies main page?")
-                        .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                movieBuilder.setMessage(R.string.questionMovies).setTitle(R.string.MoviesTitle)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent intent = new Intent(OCTranspoMain.this, MovieInformationMain.class);
                                 startActivity(intent);
                             }
-                        }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+                        }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) { }
                 }).show();
 
@@ -283,13 +289,13 @@ public class OCTranspoMain extends AppCompatActivity {
             case R.id.action_three:
 
                 AlertDialog.Builder foodBuilder = new AlertDialog.Builder(OCTranspoMain.this);
-                foodBuilder.setMessage("accept will take you to FoodNutrition main page").setTitle("Go to FoodNutrition main page?")
-                        .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                foodBuilder.setMessage(R.string.questionNutrition).setTitle(R.string.NutritionTitle)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent intent = new Intent(OCTranspoMain.this, FoodNutritionMain.class);
                                 startActivity(intent);
                             }
-                        }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+                        }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) { }
                 }).show();
 
@@ -297,15 +303,14 @@ public class OCTranspoMain extends AppCompatActivity {
                 break;
             case R.id.action_four:
 
-                Toast aboutToast = Toast.makeText(OCTranspoMain.this, "activity version 1.0 by Gabriel Maia", Toast.LENGTH_SHORT);
+                Toast aboutToast = Toast.makeText(OCTranspoMain.this, R.string.OCTranspoAbout, Toast.LENGTH_SHORT);
                 aboutToast.show();
                 break;
 
             case R.id.action_five:
 
                 AlertDialog.Builder helpBuilder = new AlertDialog.Builder(OCTranspoMain.this);
-                helpBuilder.setTitle("activity helper").setMessage("- To look for a bus stop, simply type the bus stop and press to search \n" +
-                        "\n - To save a bus, select the bus you desire, and click on the save option").show();
+                helpBuilder.setTitle(R.string.OCTranspoHelp).setMessage(R.string.OCTranspoHelpGuide).show();
 
         }
         return true;

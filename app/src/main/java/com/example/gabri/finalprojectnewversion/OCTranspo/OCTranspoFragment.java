@@ -21,15 +21,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class OCTranspoFragment extends android.app.Fragment {
-    private TextView busDestination;
-
-    private TextView busLatitudeLongitude;
-    private TextView busSpeed;
-    private TextView busStartTime;
-    private TextView busLateTime;
-
-
-
     private Button saveButton;
     private Bundle runningBundle;
     private Context parent;
@@ -49,18 +40,15 @@ public class OCTranspoFragment extends android.app.Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View result = inflater.inflate(R.layout.activity_octranspo_fragment,container,false);
-        busDestination = result.findViewById(R.id.OCTranspoDestination);
+        TextView busDestination = result.findViewById(R.id.OCTranspoDestination);
 
-        String stopNumber;
         String routeNumber;
 
         saveButton = result.findViewById(R.id.OCTranspoSaveButton);
 
-
-        stopNumber = runningBundle.getString("stopNumber");
         nameFinalStation = runningBundle.getString("busDestination");
         routeNumber = runningBundle.getString("busRouteNo");
-        busDestination.setText(routeNumber + " - " + nameFinalStation);
+        busDestination.setText(String.format(getResources().getString(R.string.hasBuses), routeNumber, nameFinalStation));
         return result;
     }
 

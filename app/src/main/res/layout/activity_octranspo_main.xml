@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/searchButton"
         android:layout_centerHorizontal="true"
-        android:text="BusStop" />
+        android:text="@string/OCTranspoBusStopAndName" />
 
     <EditText
         android:inputType="number"
