@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_one"
+        android:title="cbcNews"
+        android:icon="@drawable/cbcnews_toolbar_icon"
+        android:orderInCategory="1"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/action_two"
+        android:title="ocTranspo"
+        android:icon="@drawable/octranspo_toolbar_icon"
+        android:orderInCategory="2"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/action_three"
+        android:title="three"
+        android:icon="@drawable/nutrition_toolbar_icon"
+        android:orderInCategory="3"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/action_four"
+        android:title="About"
+        android:orderInCategory="4"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/action_five"
+        android:title="Help"
+        android:orderInCategory="5"
+        app:showAsAction="ifRoom"/>
+</menu>

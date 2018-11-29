@@ -8,11 +8,21 @@
     tools:context=".Movie.MovieInformationMain">
 
 
+    <android.support.v7.widget.Toolbar
+        android:theme="@style/cbc_appbar"
+        android:id="@+id/movie_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:titleTextColor="@color/colorTextLight" />
+
     <EditText
         android:id="@+id/enterMovie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
+        android:layout_below="@id/movie_toolbar"
         android:hint="Please enter a movie title"/>
     <Button
         android:id="@+id/search"
