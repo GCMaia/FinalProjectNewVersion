@@ -1,6 +1,9 @@
 package com.example.gabri.finalprojectnewversion.OCTranspo;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gabri.finalprojectnewversion.R;
 
@@ -41,15 +45,35 @@ public class OCTranspoFragment extends android.app.Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View result = inflater.inflate(R.layout.activity_octranspo_fragment,container,false);
         TextView busDestination = result.findViewById(R.id.OCTranspoDestination);
-
-        String routeNumber;
+        final String routeNumber;
 
         saveButton = result.findViewById(R.id.OCTranspoSaveButton);
+
+
+
 
         nameFinalStation = runningBundle.getString("busDestination");
         routeNumber = runningBundle.getString("busRouteNo");
         busDestination.setText(String.format(getResources().getString(R.string.hasBuses), routeNumber, nameFinalStation));
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                OCTranspoDatabase helperDatabase = new OCTranspoDatabase(parent);
+                SQLiteDatabase db = helperDatabase.getWritableDatabase();
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(OCTranspoDatabase.KEY_BUS_NAME, nameFinalStation);
+                contentValues.put(OCTranspoDatabase.KEY_BUS_NUM, routeNumber);
+                db.insert(OCTranspoDatabase.TABLE_NAME, null, contentValues);
+                db.close();
+                Toast toast = Toast.makeText(parent, "saved on your bus list", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+
         return result;
+
     }
 
     @Override
@@ -58,6 +82,7 @@ public class OCTranspoFragment extends android.app.Fragment {
         runningBundle = this.getArguments();
         parent = context;
     }
+
 
 
 

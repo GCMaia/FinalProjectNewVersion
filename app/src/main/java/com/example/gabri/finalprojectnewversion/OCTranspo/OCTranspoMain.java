@@ -79,6 +79,9 @@ public class OCTranspoMain extends AppCompatActivity {
         toolbar.setTitle(R.string.OCtranspo);
         setSupportActionBar(toolbar);
 
+        OCTranspoDatabase ocTranspoDatabase = new OCTranspoDatabase(this);
+
+
 
         searchButton = findViewById(R.id.searchButton);
         editText = findViewById(R.id.searchText);
@@ -311,6 +314,21 @@ public class OCTranspoMain extends AppCompatActivity {
 
                 AlertDialog.Builder helpBuilder = new AlertDialog.Builder(OCTranspoMain.this);
                 helpBuilder.setTitle(R.string.OCTranspoHelp).setMessage(R.string.OCTranspoHelpGuide).show();
+                break;
+            case R.id.action_six:
+
+                AlertDialog.Builder savedBuilder = new AlertDialog.Builder(OCTranspoMain.this);
+                savedBuilder.setMessage("accept will take you to your saved buses page")
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent intent = new Intent(OCTranspoMain.this, OCTranspoSavedBuses.class);
+                                startActivity(intent);
+                            }
+                        }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {}
+                }).show();
+                break;
 
         }
         return true;

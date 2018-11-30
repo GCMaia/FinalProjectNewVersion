@@ -6,19 +6,19 @@
     <item android:id="@+id/action_one"
         android:title="cbcNews"
         android:icon="@drawable/cbcnews_toolbar_icon"
-        android:orderInCategory="1"
+        android:orderInCategory="2"
         app:showAsAction="always" />
 
     <item android:id="@+id/action_two"
         android:title="movies"
         android:icon="@drawable/movies_toolbar_icon"
-        android:orderInCategory="2"
+        android:orderInCategory="3"
         app:showAsAction="always" />
 
     <item android:id="@+id/action_three"
         android:title="three"
         android:icon="@drawable/nutrition_toolbar_icon"
-        android:orderInCategory="3"
+        android:orderInCategory="4"
         app:showAsAction="always" />
 
     <item android:id="@+id/action_four"
@@ -31,4 +31,11 @@
         android:orderInCategory="5"
         app:showAsAction="ifRoom"/>
 
+
+    <item android:id="@+id/action_six"
+        android:title="My saved buses"
+        android:icon="@drawable/ic_save_black_24dp"
+        android:orderInCategory="1"
+        app:showAsAction="always"
+        />
 </menu>
