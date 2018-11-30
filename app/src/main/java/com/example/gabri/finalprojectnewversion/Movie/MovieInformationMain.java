@@ -1,14 +1,21 @@
 package com.example.gabri.finalprojectnewversion.Movie;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -20,6 +27,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gabri.finalprojectnewversion.CBCNews.CBCNewsMain;
+import com.example.gabri.finalprojectnewversion.FoodNutrition.FoodNutritionMain;
+import com.example.gabri.finalprojectnewversion.OCTranspo.OCTranspoMain;
 import com.example.gabri.finalprojectnewversion.R;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -36,24 +46,32 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
-public class MovieInformationMain extends Activity {
+public class MovieInformationMain extends AppCompatActivity {
     protected static final String ACTIVITY_NAME = "MovieInfoActivity";
     ArrayList<String> movieList =new ArrayList<>();
     ArrayList<Bitmap> posterList=new ArrayList<>();
     String title="";
+    ProgressBar progressBar;
+    ListView listView;
+    Button search;
+    MovieAdapter movieAdapter;
+    EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_information_main);
 
-        final ListView listView=findViewById(R.id.movieList);
-        final Button search = findViewById(R.id.search);
+        listView=findViewById(R.id.movieList);
+        search = findViewById(R.id.search);
 
-        final MovieAdapter movieAdapter=new MovieAdapter(this);
-        final ProgressBar progressBar=findViewById(R.id.progress);
-        final EditText editText=findViewById(R.id.enterMovie);
+        movieAdapter=new MovieAdapter(this);
+        progressBar=findViewById(R.id.progress);
+        progressBar.setVisibility(View.INVISIBLE);
+        editText=findViewById(R.id.enterMovie);
         listView.setAdapter(movieAdapter);
+        Toolbar movieToolBar=findViewById(R.id.movie_toolbar);
+        setSupportActionBar(movieToolBar);
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,13 +80,14 @@ public class MovieInformationMain extends Activity {
                 if (editText.getText().toString().equals("")){
                     Toast.makeText(MovieInformationMain.this, "Cannot Find That Movie", Toast.LENGTH_LONG).show();
                 }else {
-                    progressBar.setVisibility(View.INVISIBLE);
+                    progressBar.setVisibility(View.VISIBLE);
                     title=editText.getText().toString();
                     MovieQuery movieQuery = new MovieQuery();
                     movieQuery.execute();
                     editText.setText("");
                     movieAdapter.notifyDataSetChanged();
                     Snackbar.make(search, "All Movies Searched", Snackbar.LENGTH_LONG).show();
+                    //movieList.clear();
                 }
 
 
@@ -94,8 +113,8 @@ public class MovieInformationMain extends Activity {
             result=inflater.inflate(R.layout.movie_item,null);
             TextView movieTitle=result.findViewById(R.id.movieTitle);
             movieTitle.setText(getMovie(position));
-            ImageView poster=result.findViewById(R.id.poster);
-            posterList.add(getPoster(position));
+//            ImageView poster=result.findViewById(R.id.poster);
+//            posterList.add(getPoster(position));
             return result;
         }
         public long getItemId(int position){
@@ -134,12 +153,12 @@ public class MovieInformationMain extends Activity {
                                 plot=xpp.getAttributeValue(null,"plot");
                                 poster = xpp.getAttributeValue(null, "poster");
 
-                                URL urlIcon=new URL(poster);
-                                picture  = HttpUtils.getImage(urlIcon);
-                                FileOutputStream outputStream = openFileOutput( poster, Context.MODE_PRIVATE);
-                                picture.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
-                                outputStream.flush();
-                                outputStream.close();
+//                                URL urlIcon=new URL(poster);
+//                                picture  = HttpUtils.getImage(urlIcon);
+//                                FileOutputStream outputStream = openFileOutput( poster, Context.MODE_PRIVATE);
+//                                picture.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
+//                                outputStream.flush();
+//                                outputStream.close();
 
                             }
 //
@@ -148,9 +167,9 @@ public class MovieInformationMain extends Activity {
                     xpp.next();
 //
                 }
-                if (!title1.equals("") && !posterList.equals("")){
+                if (!title1.equals("")){
                     movieList.add(title1);
-                    posterList.add(picture);
+                    //posterList.add(picture);
                 }
             }catch(Exception e){}
             return null;
@@ -161,6 +180,7 @@ public class MovieInformationMain extends Activity {
         }
         public void onPostExecute(String s){
             super.onPostExecute(s);
+            progressBar.setVisibility(View.INVISIBLE);
             TextView movieTitle=findViewById(R.id.movieTitle);
             ImageView poster=findViewById(R.id.poster);
             if (movieList.size()==0){
@@ -168,11 +188,79 @@ public class MovieInformationMain extends Activity {
             }
             else{
                 movieTitle.setText(title1);
-                poster.setImageBitmap(picture);
+                //poster.setImageBitmap(picture);
             }
         }
+    }
 
+    public boolean onCreateOptionsMenu(Menu m){
+        getMenuInflater().inflate(R.menu.menu_movie_appbar,m);
+        return true;
+    }
+    public boolean onOptionsItemSelected (MenuItem mi){
+        int id=mi.getItemId();
+        AlertDialog.Builder builder=new AlertDialog.Builder(MovieInformationMain.this);
+        AlertDialog dialog;
+        switch (id){
+            case R.id.action_one:
+                builder.setTitle("Do you want to go to CBC News?");
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent next=new Intent(MovieInformationMain.this, CBCNewsMain.class);
+                        startActivity(next);
+                    }
+                });
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                dialog=builder.create();
+                dialog.show();
+                break;
+            case R.id.action_two:
+                builder.setTitle("Do you want to go to OC Transpo?");
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent next=new Intent(MovieInformationMain.this, OCTranspoMain.class);
+                        startActivity(next);
+                    }
+                });
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                dialog=builder.create();
+                dialog.show();
+                break;
+            case R.id.action_three:
+                builder.setTitle("Do you want to go to Food Nutrition?");
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent next=new Intent(MovieInformationMain.this, FoodNutritionMain.class);
+                        startActivity(next);
+                    }
+                });
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                dialog=builder.create();
+                dialog.show();
+                break;
+            case R.id.action_four:
+                Toast.makeText(MovieInformationMain.this,"Movie Information by Mary Anne Bernardino",Toast.LENGTH_LONG).show();
+                break;
+            case R.id.action_five:
+                builder.setTitle("Movie Information Help").setMessage("To begin looking for a movie, type the name of the movie into the textbox and click the search button").show();
 
+        }
+        return true;
     }
 
 }
