@@ -1,5 +1,6 @@
 package com.example.gabri.finalprojectnewversion.Movie;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -18,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,14 +50,23 @@ import java.util.ArrayList;
 
 public class MovieInformationMain extends AppCompatActivity {
     protected static final String ACTIVITY_NAME = "MovieInfoActivity";
-    ArrayList<String> movieList =new ArrayList<>();
-    ArrayList<Bitmap> posterList=new ArrayList<>();
-    String title="";
-    ProgressBar progressBar;
-    ListView listView;
+    final ArrayList<String> movieList =new ArrayList<>();
+    final ArrayList<Bitmap> posterList=new ArrayList<>();
+
+    ProgressBar progressBarMovie;
+
     Button search;
     MovieAdapter movieAdapter;
     EditText editText;
+    ListView listView;
+    MovieQuery movieQuery;
+    String title="";
+    String year="";
+    String rating="";
+    String runtime="";
+    String actors="";
+    String plot="";
+    String poster="" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,12 +77,28 @@ public class MovieInformationMain extends AppCompatActivity {
         search = findViewById(R.id.search);
 
         movieAdapter=new MovieAdapter(this);
-        progressBar=findViewById(R.id.progress);
-        progressBar.setVisibility(View.INVISIBLE);
-        editText=findViewById(R.id.enterMovie);
         listView.setAdapter(movieAdapter);
+        progressBarMovie=findViewById(R.id.progress);
+        progressBarMovie.setVisibility(View.INVISIBLE);
+        editText=findViewById(R.id.enterMovie);
+        movieQuery = new MovieQuery();
+
         Toolbar movieToolBar=findViewById(R.id.movie_toolbar);
         setSupportActionBar(movieToolBar);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(MovieInformationMain.this, MovieDetail.class);
+                intent.putExtra("title",movieList.get(position));
+                intent.putExtra("year",year);
+                intent.putExtra("rating",rating);
+                intent.putExtra("runtime",runtime);
+                intent.putExtra("actors",actors);
+                intent.putExtra("plot",plot);
+                startActivityForResult(intent,12);
+            }
+        });
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,14 +107,14 @@ public class MovieInformationMain extends AppCompatActivity {
                 if (editText.getText().toString().equals("")){
                     Toast.makeText(MovieInformationMain.this, "Cannot Find That Movie", Toast.LENGTH_LONG).show();
                 }else {
-                    progressBar.setVisibility(View.VISIBLE);
+                    progressBarMovie.setVisibility(View.VISIBLE);
                     title=editText.getText().toString();
-                    MovieQuery movieQuery = new MovieQuery();
+
                     movieQuery.execute();
-                    editText.setText("");
                     movieAdapter.notifyDataSetChanged();
+                    editText.setText("");
                     Snackbar.make(search, "All Movies Searched", Snackbar.LENGTH_LONG).show();
-                    //movieList.clear();
+                    movieList.clear();
                 }
 
 
@@ -96,7 +123,7 @@ public class MovieInformationMain extends AppCompatActivity {
         });
 
     }
-    private class MovieAdapter extends ArrayAdapter<String>{
+    class MovieAdapter extends ArrayAdapter<String>{
         public MovieAdapter(Context ctx){
             super(ctx,0);
         }
@@ -107,6 +134,7 @@ public class MovieInformationMain extends AppCompatActivity {
             return movieList.get(position);
         }
         public Bitmap getPoster(int position){ return posterList.get(position);}
+
         public View getView(int position, View convertView, ViewGroup parent){
             LayoutInflater inflater=MovieInformationMain.this.getLayoutInflater();
             View result;
@@ -117,19 +145,16 @@ public class MovieInformationMain extends AppCompatActivity {
 //            posterList.add(getPoster(position));
             return result;
         }
-        public long getItemId(int position){
-            return position;
-        }
+
     }
 
-    private class MovieQuery extends AsyncTask<String, Integer,String> {
-        String title1, year,rating, runtime, actors, plot, poster ;
-        String apiKey="c47e9b47";
+    class MovieQuery extends AsyncTask<String, Integer,String> {
+        String titleTemp;
+        final String apiKey="c47e9b47";
         Bitmap picture;
         @Override
         protected String doInBackground(String... strings) {
             //http://www.omdbapi.com/?apikey=c47e9b47&r=xml&t=titanic
-
             try{
                 String web = "http://www.omdbapi.com/?apikey="+ apiKey+ "&r=xml&t="+URLEncoder.encode(title,"UTF-8");
                 URL url=new URL(web);
@@ -143,15 +168,16 @@ public class MovieInformationMain extends AppCompatActivity {
 
                 while (xpp.getEventType()!=XmlPullParser.END_DOCUMENT) {
                     if (xpp.getEventType()==XmlPullParser.START_TAG) {
-                            if (xpp.getName().equals("movie")) {
-                                xpp.next();
-                                title1 = xpp.getAttributeValue(null, "title");
-                                year = xpp.getAttributeValue(null, "year");
-                                rating=xpp.getAttributeValue(null,"rated");
-                                runtime=xpp.getAttributeValue(null,"runtime");
-                                actors=xpp.getAttributeValue(null,"actors");
-                                plot=xpp.getAttributeValue(null,"plot");
-                                poster = xpp.getAttributeValue(null, "poster");
+                        String name=xpp.getName();
+                        if (name.equals("movie")) {
+                            xpp.next();
+                            titleTemp= xpp.getAttributeValue(null, "title");
+                            year = xpp.getAttributeValue(null, "year");
+                            rating=xpp.getAttributeValue(null,"rated");
+                            runtime=xpp.getAttributeValue(null,"runtime");
+                            actors=xpp.getAttributeValue(null,"actors");
+                            plot=xpp.getAttributeValue(null,"plot");
+                            //poster = xpp.getAttributeValue(null, "poster");
 
 //                                URL urlIcon=new URL(poster);
 //                                picture  = HttpUtils.getImage(urlIcon);
@@ -160,38 +186,35 @@ public class MovieInformationMain extends AppCompatActivity {
 //                                outputStream.flush();
 //                                outputStream.close();
 
-                            }
-//
-
+                        }
+                    }else if (title!=null){
+                        movieList.add(titleTemp);
                     }
                     xpp.next();
-//
                 }
-                if (!title1.equals("")){
-                    movieList.add(title1);
-                    //posterList.add(picture);
-                }
-            }catch(Exception e){}
+            }
+            catch(Exception e){}
             return null;
         }
         public boolean fileExistance(String fname){
             File file = getBaseContext().getFileStreamPath(fname);
             return file.exists();
         }
-        public void onPostExecute(String s){
+
+        @Override
+        protected void onPostExecute(String s){
             super.onPostExecute(s);
-            progressBar.setVisibility(View.INVISIBLE);
-            TextView movieTitle=findViewById(R.id.movieTitle);
-            ImageView poster=findViewById(R.id.poster);
-            if (movieList.size()==0){
-                Toast.makeText(MovieInformationMain.this, "No Movies Found",Toast.LENGTH_LONG).show();
-            }
-            else{
-                movieTitle.setText(title1);
-                //poster.setImageBitmap(picture);
-            }
+            progressBarMovie.setVisibility(View.INVISIBLE);
+
         }
     }
+
+
+
+
+
+
+
 
     public boolean onCreateOptionsMenu(Menu m){
         getMenuInflater().inflate(R.menu.menu_movie_appbar,m);

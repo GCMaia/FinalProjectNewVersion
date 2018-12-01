@@ -35,7 +35,9 @@
         <activity android:name=".Movie.MovieInformationMain" />
         <activity android:name=".OCTranspo.OCTranspoMain" />
         <activity android:name=".OCTranspo.BusFragmentDetails" />
-        <activity android:name=".OCTranspo.OCTranspoSavedBuses"></activity>
+        <activity android:name=".OCTranspo.OCTranspoSavedBuses" />
+        <activity android:name=".Movie.MovieDetail" />
+        <activity android:name=".Movie.MovieFragment"></activity>
     </application>
 
 </manifest>
