@@ -4,13 +4,16 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.example.gabri.finalprojectnewversion.R;
 
 public class MovieDetail extends AppCompatActivity {
     String title,year, rating,runtime, actors, plot;
+    Bitmap poster;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +22,7 @@ public class MovieDetail extends AppCompatActivity {
 
         Intent intent=getIntent();
 
+        poster=(Bitmap) intent.getParcelableExtra("poster");
         title=intent.getStringExtra("title");
         year=intent.getStringExtra("year");
         rating=intent.getStringExtra("rating");
@@ -29,13 +33,13 @@ public class MovieDetail extends AppCompatActivity {
         MovieFragment movieFragment=new MovieFragment();
         Bundle bundle=new Bundle();
 
-
-        bundle.putString(title, intent.getStringExtra("title"));
-        bundle.putString(year, intent.getStringExtra("year"));
-        bundle.putString(rating, intent.getStringExtra("rating"));
-        bundle.putString(runtime, intent.getStringExtra("runtime"));
-        bundle.putString(actors, intent.getStringExtra("actors"));
-        bundle.putString(plot, intent.getStringExtra("plot"));
+        bundle.putParcelable("poster",poster);
+        bundle.putString("title",title);
+        bundle.putString("year",year);
+        bundle.putString("rating", rating);
+        bundle.putString("runtime", runtime);
+        bundle.putString("actors",actors);
+        bundle.putString("plot",plot);
 
         movieFragment.setArguments(bundle);
 

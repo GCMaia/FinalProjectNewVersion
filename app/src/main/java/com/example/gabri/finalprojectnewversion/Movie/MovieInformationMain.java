@@ -67,6 +67,7 @@ public class MovieInformationMain extends AppCompatActivity {
     String actors="";
     String plot="";
     String poster="" ;
+    Bitmap picture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,13 +91,15 @@ public class MovieInformationMain extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent=new Intent(MovieInformationMain.this, MovieDetail.class);
+                intent.putExtra("id",id);
+                intent.putExtra("poster",posterList.get(position));
                 intent.putExtra("title",movieList.get(position));
                 intent.putExtra("year",year);
                 intent.putExtra("rating",rating);
                 intent.putExtra("runtime",runtime);
                 intent.putExtra("actors",actors);
                 intent.putExtra("plot",plot);
-                startActivityForResult(intent,12);
+                startActivity(intent);
             }
         });
 
@@ -141,8 +144,8 @@ public class MovieInformationMain extends AppCompatActivity {
             result=inflater.inflate(R.layout.movie_item,null);
             TextView movieTitle=result.findViewById(R.id.movieTitle);
             movieTitle.setText(getMovie(position));
-//            ImageView poster=result.findViewById(R.id.poster);
-//            posterList.add(getPoster(position));
+            ImageView poster=result.findViewById(R.id.poster);
+            poster.setImageBitmap(getPoster(position));
             return result;
         }
 
@@ -151,7 +154,7 @@ public class MovieInformationMain extends AppCompatActivity {
     class MovieQuery extends AsyncTask<String, Integer,String> {
         String titleTemp;
         final String apiKey="c47e9b47";
-        Bitmap picture;
+
         @Override
         protected String doInBackground(String... strings) {
             //http://www.omdbapi.com/?apikey=c47e9b47&r=xml&t=titanic
@@ -177,18 +180,40 @@ public class MovieInformationMain extends AppCompatActivity {
                             runtime=xpp.getAttributeValue(null,"runtime");
                             actors=xpp.getAttributeValue(null,"actors");
                             plot=xpp.getAttributeValue(null,"plot");
-                            //poster = xpp.getAttributeValue(null, "poster");
+                            poster = xpp.getAttributeValue(null, "poster");
 
-//                                URL urlIcon=new URL(poster);
-//                                picture  = HttpUtils.getImage(urlIcon);
+                            URL urlPic=new URL(poster);
+//                            if (fileExistance(poster)) {
+//                                FileInputStream fis = null;
+//                                try {
+//                                    fis = openFileInput(poster);
+//                                } catch (FileNotFoundException e) {
+//                                    e.printStackTrace();
+//                                }
+//                                picture = BitmapFactory.decodeStream(fis);
+//                                Log.i(ACTIVITY_NAME, "Image Found Locally");
+//                            }
+//                            else {
+//                                Log.i(ACTIVITY_NAME, "Image Downloaded");
+//
+//                                picture  = HttpUtils.getImage(urlPic);
 //                                FileOutputStream outputStream = openFileOutput( poster, Context.MODE_PRIVATE);
-//                                picture.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
+//                                if (picture != null) {
+//                                    picture.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
+//                                }
 //                                outputStream.flush();
 //                                outputStream.close();
+//                            }
+                            picture = HttpUtils.getImage(urlPic);
+                            FileOutputStream outputStream = openFileOutput( titleTemp+".JPEG", Context.MODE_PRIVATE);
+                            picture.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
+                            outputStream.flush();
+                            outputStream.close();
 
                         }
-                    }else if (title!=null){
+                    }else if (title!=null && picture!=null){
                         movieList.add(titleTemp);
+                        posterList.add(picture);
                     }
                     xpp.next();
                 }
