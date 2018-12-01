@@ -2,6 +2,7 @@ package com.example.gabri.finalprojectnewversion.OCTranspo;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -32,6 +33,7 @@ public class OCTranspoFragment extends android.app.Fragment {
 
 
     private String nameFinalStation;
+    private String busStopNumber;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +48,8 @@ public class OCTranspoFragment extends android.app.Fragment {
         View result = inflater.inflate(R.layout.activity_octranspo_fragment,container,false);
         TextView busDestination = result.findViewById(R.id.OCTranspoDestination);
         final String routeNumber;
+        final String origin;
+
 
         saveButton = result.findViewById(R.id.OCTranspoSaveButton);
 
@@ -54,7 +58,17 @@ public class OCTranspoFragment extends android.app.Fragment {
 
         nameFinalStation = runningBundle.getString("busDestination");
         routeNumber = runningBundle.getString("busRouteNo");
+        busStopNumber = runningBundle.getString("stopNumber");
+
+
+
         busDestination.setText(String.format(getResources().getString(R.string.hasBuses), routeNumber, nameFinalStation));
+
+        origin = runningBundle.getString("origin");
+        if (origin.equals("saved")){
+            saveButton.setVisibility(View.GONE);
+        }
+
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +79,7 @@ public class OCTranspoFragment extends android.app.Fragment {
                 ContentValues contentValues = new ContentValues();
                 contentValues.put(OCTranspoDatabase.KEY_BUS_NAME, nameFinalStation);
                 contentValues.put(OCTranspoDatabase.KEY_BUS_NUM, routeNumber);
+                contentValues.put(OCTranspoDatabase.KEY_BUS_STOP, busStopNumber);
                 db.insert(OCTranspoDatabase.TABLE_NAME, null, contentValues);
                 db.close();
                 Toast toast = Toast.makeText(parent, "saved on your bus list", Toast.LENGTH_SHORT);

@@ -11,12 +11,13 @@ import java.util.List;
 
 class OCTranspoDatabase extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "OCTranspo.db";
     public static final String TABLE_NAME = "SavedBuses";
     public static final String KEY_ID = "_id";
     public static final String KEY_BUS_NAME = "busName";
     public static final String KEY_BUS_NUM = "busNum";
+    public static final String KEY_BUS_STOP = "busStop";
 
 
     public OCTranspoDatabase ( Context context ) {
@@ -27,7 +28,7 @@ class OCTranspoDatabase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_NAME + " (" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_BUS_NAME +
-                " TEXT NOT NULL, " + KEY_BUS_NUM + " TEXT NOT NULL );");
+                " TEXT NOT NULL, " + KEY_BUS_NUM + " TEXT NOT NULL, " + KEY_BUS_STOP + " TEXT NOT NULL );");
     }
 
     @Override
@@ -36,25 +37,14 @@ class OCTranspoDatabase extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public ArrayList<String> getAllSavedBuses(){
-        final ArrayList<String> list = new ArrayList<>();
+    public Cursor getAllSavedBusesTest(){
         final SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(true, TABLE_NAME, null, null, null, null, null, null, null);
+        String query = "Select * from " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
 
-        while (cursor.moveToNext()) {
-            final int columnBusNumIndex = cursor.getColumnIndex(KEY_BUS_NUM);
-            final int columnBusNameIndex = cursor.getColumnIndex(KEY_BUS_NAME);
-
-            String busNum = cursor.getString(columnBusNumIndex);
-            String busName = cursor.getString(columnBusNameIndex);
-
-
-            list.add(busNum);
-            list.add(busName);
-        }
-        return list;
-
-
+        return cursor;
     }
+
+
 
 }

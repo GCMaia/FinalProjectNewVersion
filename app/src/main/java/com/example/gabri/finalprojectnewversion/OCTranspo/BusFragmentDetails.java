@@ -53,7 +53,7 @@ public class BusFragmentDetails extends AppCompatActivity {
         fragmentArgs.putString("busDestination", i.getStringExtra("busDestination")  );
         fragmentArgs.putString("stopNumber", i.getStringExtra("stopNumber"));
         fragmentArgs.putString("busRouteNo", i.getStringExtra("busRouteNo"));
-
+        fragmentArgs.putString("origin", i.getStringExtra("origin"));
         mf.setArguments(fragmentArgs);
 
         FragmentManager fm = getFragmentManager();

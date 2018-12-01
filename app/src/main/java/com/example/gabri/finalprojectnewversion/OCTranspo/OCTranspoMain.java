@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
@@ -60,6 +61,8 @@ public class OCTranspoMain extends AppCompatActivity {
     String tempDestination = "";
     String stopName = "";
 
+    SharedPreferences preferences;
+
     /**
      * method onCreate used for calling the elements being used from the referenced XML, and starts query under the required circumstances
      * @param savedInstanceState checks if needs to restore themselves to a previous state using the data stored in this bundle
@@ -79,24 +82,30 @@ public class OCTranspoMain extends AppCompatActivity {
         toolbar.setTitle(R.string.OCtranspo);
         setSupportActionBar(toolbar);
 
-        OCTranspoDatabase ocTranspoDatabase = new OCTranspoDatabase(this);
-
+        preferences = getSharedPreferences("savedStopNumber", MODE_PRIVATE);
 
 
         searchButton = findViewById(R.id.searchButton);
         editText = findViewById(R.id.searchText);
 
-
+        String tempStopNumber = preferences.getString("stop", "empty");
+        if (!tempStopNumber.equals("empty")){
+            stopNumber = tempStopNumber;
+            OCQuery query = new OCQuery();
+            query.execute();
+        }
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Intent fragmentPiece = new Intent(OCTranspoMain.this, BusFragmentDetails.class);
-                fragmentPiece.putExtra("ID", id);
                 fragmentPiece.putExtra("busDestination", busInfoHeader.get(position));
                 fragmentPiece.putExtra("busRouteNo", busInfoNo.get(position));
                 fragmentPiece.putExtra("stopNumber",stopNumber);
+
                 startActivityForResult(fragmentPiece, 1);
+
+
 
             }
         });
@@ -111,6 +120,11 @@ public class OCTranspoMain extends AppCompatActivity {
                     ProgressBar loader = findViewById(R.id.loader);
                     loader.setVisibility(View.VISIBLE);
                     stopNumber = editText.getText().toString();
+
+                    SharedPreferences.Editor preferencesEdit = preferences.edit();
+                    preferencesEdit.putString("stop", stopNumber);
+                    preferencesEdit.apply();
+
                     OCQuery query = new OCQuery();
                     query.execute();
                     editText.setText("");
