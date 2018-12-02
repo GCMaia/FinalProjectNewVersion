@@ -65,7 +65,9 @@ public class OCTranspoFragment extends android.app.Fragment {
         busDestination.setText(String.format(getResources().getString(R.string.hasBuses), routeNumber, nameFinalStation));
 
         origin = runningBundle.getString("origin");
-        if (origin.equals("saved")){
+        if (origin==null){
+            saveButton.setVisibility(View.VISIBLE);
+        }else{
             saveButton.setVisibility(View.GONE);
         }
 

@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
-
         android:src="@drawable/movie"
         />
 
@@ -23,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/moviePoster"
-        android:text="title"
+        android:text="@string/titleMovie"
         />
     <TextView
         android:id="@+id/year"
@@ -31,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/title"
-        android:text="year"
+        android:text="@string/year"
         />
     <TextView
         android:id="@+id/rating"
@@ -39,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/year"
-        android:text="rating"
+        android:text="@string/Rated"
         />
 
     <TextView
@@ -48,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/rating"
-        android:text="runtime"
+        android:text="@string/Runtime"
         />
     <TextView
         android:id="@+id/actors"
@@ -56,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/runtime"
-        android:text="actors"
+        android:text="@string/Actors"
         />
     <TextView
         android:id="@+id/plot"
@@ -64,7 +63,14 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/actors"
-        android:text="plot"
+        android:text="@string/Plot"
         />
+
+    <Button
+        android:id="@+id/savedMovieButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Save This Movie" />
 
 </RelativeLayout>

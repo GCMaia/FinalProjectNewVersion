@@ -59,7 +59,6 @@ public class MovieInformationMain extends AppCompatActivity {
     MovieAdapter movieAdapter;
     EditText editText;
     ListView listView;
-    MovieQuery movieQuery;
     String title="";
     String year="";
     String rating="";
@@ -68,6 +67,7 @@ public class MovieInformationMain extends AppCompatActivity {
     String plot="";
     String poster="" ;
     Bitmap picture;
+    String posterName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +82,7 @@ public class MovieInformationMain extends AppCompatActivity {
         progressBarMovie=findViewById(R.id.progress);
         progressBarMovie.setVisibility(View.INVISIBLE);
         editText=findViewById(R.id.enterMovie);
-        movieQuery = new MovieQuery();
+
 
         Toolbar movieToolBar=findViewById(R.id.movie_toolbar);
         setSupportActionBar(movieToolBar);
@@ -92,13 +92,14 @@ public class MovieInformationMain extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent=new Intent(MovieInformationMain.this, MovieDetail.class);
                 intent.putExtra("id",id);
-                intent.putExtra("poster",posterList.get(position));
+                //intent.putExtra("poster",poster);
                 intent.putExtra("title",movieList.get(position));
                 intent.putExtra("year",year);
                 intent.putExtra("rating",rating);
                 intent.putExtra("runtime",runtime);
                 intent.putExtra("actors",actors);
                 intent.putExtra("plot",plot);
+                intent.putExtra("origin", "origin");
                 startActivity(intent);
             }
         });
@@ -112,7 +113,7 @@ public class MovieInformationMain extends AppCompatActivity {
                 }else {
                     progressBarMovie.setVisibility(View.VISIBLE);
                     title=editText.getText().toString();
-
+                    MovieQuery movieQuery = new MovieQuery();
                     movieQuery.execute();
                     movieAdapter.notifyDataSetChanged();
                     editText.setText("");
@@ -183,10 +184,12 @@ public class MovieInformationMain extends AppCompatActivity {
                             poster = xpp.getAttributeValue(null, "poster");
 
                             URL urlPic=new URL(poster);
-//                            if (fileExistance(poster)) {
+                            String posterName=titleTemp+".JPEG";
+
+//                            if (fileExistance(posterName)) {
 //                                FileInputStream fis = null;
 //                                try {
-//                                    fis = openFileInput(poster);
+//                                    fis = openFileInput(posterName);
 //                                } catch (FileNotFoundException e) {
 //                                    e.printStackTrace();
 //                                }
@@ -197,7 +200,7 @@ public class MovieInformationMain extends AppCompatActivity {
 //                                Log.i(ACTIVITY_NAME, "Image Downloaded");
 //
 //                                picture  = HttpUtils.getImage(urlPic);
-//                                FileOutputStream outputStream = openFileOutput( poster, Context.MODE_PRIVATE);
+//                                FileOutputStream outputStream = openFileOutput( posterName, Context.MODE_PRIVATE);
 //                                if (picture != null) {
 //                                    picture.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
 //                                }
@@ -205,15 +208,18 @@ public class MovieInformationMain extends AppCompatActivity {
 //                                outputStream.close();
 //                            }
                             picture = HttpUtils.getImage(urlPic);
-                            FileOutputStream outputStream = openFileOutput( titleTemp+".JPEG", Context.MODE_PRIVATE);
-                            picture.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
-                            outputStream.flush();
-                            outputStream.close();
+//                            FileOutputStream outputStream = openFileOutput( title+".JPEG", Context.MODE_PRIVATE);
+//                            picture.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
+//                            outputStream.flush();
+//                            outputStream.close();
 
                         }
-                    }else if (title!=null && picture!=null){
+                    }else if (title!=null && poster!=null){
                         movieList.add(titleTemp);
                         posterList.add(picture);
+                    }
+                    else{
+                        movieList.add(titleTemp);
                     }
                     xpp.next();
                 }
@@ -251,6 +257,23 @@ public class MovieInformationMain extends AppCompatActivity {
         AlertDialog dialog;
         switch (id){
             case R.id.action_one:
+                builder.setTitle("Do you want to see your saved Movies?");
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent next=new Intent(MovieInformationMain.this, MoviesSaved.class);
+                        startActivity(next);
+                    }
+                });
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                dialog=builder.create();
+                dialog.show();
+                break;
+            case R.id.action_two:
                 builder.setTitle("Do you want to go to CBC News?");
                 builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
@@ -267,7 +290,7 @@ public class MovieInformationMain extends AppCompatActivity {
                 dialog=builder.create();
                 dialog.show();
                 break;
-            case R.id.action_two:
+            case R.id.action_three:
                 builder.setTitle("Do you want to go to OC Transpo?");
                 builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
@@ -284,7 +307,7 @@ public class MovieInformationMain extends AppCompatActivity {
                 dialog=builder.create();
                 dialog.show();
                 break;
-            case R.id.action_three:
+            case R.id.action_four:
                 builder.setTitle("Do you want to go to Food Nutrition?");
                 builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
@@ -301,10 +324,10 @@ public class MovieInformationMain extends AppCompatActivity {
                 dialog=builder.create();
                 dialog.show();
                 break;
-            case R.id.action_four:
+            case R.id.action_five:
                 Toast.makeText(MovieInformationMain.this,"Movie Information by Mary Anne Bernardino",Toast.LENGTH_LONG).show();
                 break;
-            case R.id.action_five:
+            case R.id.action_six:
                 builder.setTitle("Movie Information Help").setMessage("To begin looking for a movie, type the name of the movie into the textbox and click the search button").show();
 
         }

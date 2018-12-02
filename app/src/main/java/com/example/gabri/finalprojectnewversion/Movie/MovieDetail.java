@@ -11,9 +11,11 @@ import android.widget.TextView;
 
 import com.example.gabri.finalprojectnewversion.R;
 
+import java.io.File;
+
 public class MovieDetail extends AppCompatActivity {
-    String title,year, rating,runtime, actors, plot;
-    Bitmap poster;
+    String title,year, rating,runtime, actors, plot,poster;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +24,7 @@ public class MovieDetail extends AppCompatActivity {
 
         Intent intent=getIntent();
 
-        poster=(Bitmap) intent.getParcelableExtra("poster");
+        //poster=intent.getStringExtra("poster");
         title=intent.getStringExtra("title");
         year=intent.getStringExtra("year");
         rating=intent.getStringExtra("rating");
@@ -33,13 +35,14 @@ public class MovieDetail extends AppCompatActivity {
         MovieFragment movieFragment=new MovieFragment();
         Bundle bundle=new Bundle();
 
-        bundle.putParcelable("poster",poster);
+        //bundle.putString("poster",poster);
         bundle.putString("title",title);
         bundle.putString("year",year);
         bundle.putString("rating", rating);
         bundle.putString("runtime", runtime);
         bundle.putString("actors",actors);
         bundle.putString("plot",plot);
+        bundle.putString("origin","origin");
 
         movieFragment.setArguments(bundle);
 

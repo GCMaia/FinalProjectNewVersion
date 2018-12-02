@@ -48,4 +48,10 @@
     <string name="OCTranspoStartString">Start Time</string>
     <string name="OCTranspoDelayedString">Delayed Time</string>
     <string name="OCTranspoSaveString">Press the button to save the route</string>
+    <string name="titleMovie">Title: %1s</string>
+    <string name="year">Release Date: %1s</string>
+    <string name="Rated">Rated: %1s</string>
+    <string name="Runtime">Runtime: %1s</string>
+    <string name="Actors">Actors: %1s</string>
+    <string name="Plot">Plot: %1s</string>
 </resources>

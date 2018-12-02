@@ -3,30 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/action_one"
+        android:title="Saved Movie List"
+        android:icon="@drawable/ic_save_black_24dp"
+        android:orderInCategory="1"
+        app:showAsAction="always"
+        />
+    <item android:id="@+id/action_two"
         android:title="cbcNews"
         android:icon="@drawable/cbcnews_toolbar_icon"
-        android:orderInCategory="1"
-        app:showAsAction="always" />
-
-    <item android:id="@+id/action_two"
-        android:title="ocTranspo"
-        android:icon="@drawable/octranspo_toolbar_icon"
         android:orderInCategory="2"
         app:showAsAction="always" />
 
     <item android:id="@+id/action_three"
-        android:title="three"
-        android:icon="@drawable/nutrition_toolbar_icon"
+        android:title="ocTranspo"
+        android:icon="@drawable/octranspo_toolbar_icon"
         android:orderInCategory="3"
         app:showAsAction="always" />
 
     <item android:id="@+id/action_four"
-        android:title="About"
+        android:title="three"
+        android:icon="@drawable/nutrition_toolbar_icon"
         android:orderInCategory="4"
-        app:showAsAction="never"/>
+        app:showAsAction="always" />
 
     <item android:id="@+id/action_five"
-        android:title="Help"
+        android:title="About"
         android:orderInCategory="5"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/action_six"
+        android:title="Help"
+        android:orderInCategory="6"
         app:showAsAction="ifRoom"/>
 </menu>
