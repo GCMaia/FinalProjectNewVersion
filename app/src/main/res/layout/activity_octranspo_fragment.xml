@@ -6,68 +6,68 @@
     android:orientation="vertical"
     tools:context=".OCTranspo.BusFragmentDetails">
 
-    <ImageView
-        android:id="@+id/OCTranspoBusDetailsImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="166dp"
-        android:src="@drawable/bus" />
+  <ImageView
+      android:id="@+id/OCTranspoBusDetailsImageView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentTop="true"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="166dp"
+      android:src="@drawable/bus" />
 
-    <TextView
-        android:id="@+id/OCTranspoDestination"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/OCTranspoBusDetailsImageView"
-        android:layout_centerHorizontal="true"
-        android:text="@string/OCTranspoDestinationString" />
+  <TextView
+      android:id="@+id/OCTranspoDestination"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/OCTranspoBusDetailsImageView"
+      android:layout_centerHorizontal="true"
+      android:text="@string/OCTranspoDestinationString" />
 
-    <TextView
-        android:id="@+id/OCTranspoLatitude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/OCTRanspoSpeed"
-        android:layout_centerHorizontal="true"
-        android:text="@string/OCTranspoLatitudeString"/>
+  <TextView
+      android:id="@+id/OCTranspoLatitude"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/OCTRanspoSpeed"
+      android:layout_centerHorizontal="true"
+      android:text="@string/OCTranspoLatitudeString"/>
 
-    <TextView
-        android:id="@+id/OCTranspoLongitude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/OCTranspoLatitude"
-        android:layout_centerHorizontal="true"
-        android:text="@string/OCTranspoLongitudeString" />
+  <TextView
+      android:id="@+id/OCTranspoLongitude"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/OCTranspoLatitude"
+      android:layout_centerHorizontal="true"
+      android:text="@string/OCTranspoLongitudeString" />
 
-    <TextView
-        android:id="@+id/OCTRanspoSpeed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/OCTranspoLateTime"
-        android:layout_centerHorizontal="true"
-        android:text="@string/OCTranspoSpeedString" />
+  <TextView
+      android:id="@+id/OCTRanspoSpeed"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/OCTranspoLateTime"
+      android:layout_centerHorizontal="true"
+      android:text="@string/OCTranspoSpeedString" />
 
-    <TextView
-        android:id="@+id/OCTranspoStartTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/OCTranspoDestination"
-        android:layout_centerHorizontal="true"
-        android:text="@string/OCTranspoStartString" />
+  <TextView
+      android:id="@+id/OCTranspoStartTime"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/OCTranspoDestination"
+      android:layout_centerHorizontal="true"
+      android:text="@string/OCTranspoStartString" />
 
-    <TextView
-        android:id="@+id/OCTranspoLateTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/OCTranspoStartTime"
-        android:layout_centerHorizontal="true"
-        android:text="@string/OCTranspoDelayedString" />
+  <TextView
+      android:id="@+id/OCTranspoLateTime"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/OCTranspoStartTime"
+      android:layout_centerHorizontal="true"
+      android:text="@string/OCTranspoDelayedString" />
 
-    <Button
-        android:id="@+id/OCTranspoSaveButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="@string/OCTranspoSaveString" />
+  <Button
+      android:id="@+id/OCTranspoSaveButton"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:text="@string/OCTranspoSaveString" />
 
 </RelativeLayout>

@@ -29,6 +29,11 @@ public class MoviesSaved extends AppCompatActivity {
     MovieDatabase movieDatabase;
     ArrayList<Integer> ID;
     ArrayList<String> titles;
+    ArrayList<String> year;
+    ArrayList<String> runtime;
+    ArrayList<String> rated;
+    ArrayList<String> plot;
+    ArrayList<String> actors;
     SavedMovieAdapter savedMovieAdapter;
     ListView listView;
     @Override
@@ -40,6 +45,7 @@ public class MoviesSaved extends AppCompatActivity {
         ID=new ArrayList<>();
         titles=new ArrayList<>();
         savedMovieAdapter=new SavedMovieAdapter(this);
+        getSavedMovies();
     }
 
     public void getSavedMovies(){
@@ -51,6 +57,11 @@ public class MoviesSaved extends AppCompatActivity {
             while (cursor.moveToNext()){
                 ID.add(cursor.getInt(0));
                 titles.add(cursor.getString(1));
+                year.add(cursor.getString(2));
+                rated.add(cursor.getString(3));
+                runtime.add(cursor.getString(4));
+                actors.add(cursor.getString(5));
+                plot.add(cursor.getString(6));
                 listView=findViewById(R.id.savedMovieList);
                 listView.setAdapter(savedMovieAdapter);
                 savedMovieAdapter.notifyDataSetChanged();
@@ -70,11 +81,13 @@ public class MoviesSaved extends AppCompatActivity {
         public String getTitle(int position){
             return titles.get(position);
         }
+
         public View getView(final int position, View convertView, ViewGroup parent){
             LayoutInflater inflater=MoviesSaved.this.getLayoutInflater();
             View result=inflater.inflate(R.layout.saved_movie_item,null);
             Button remove=result.findViewById(R.id.removeButton);
             TextView title=result.findViewById(R.id.movieTitle);
+
             title.setText(getTitle(position));
 
             if (getCount()!=0){
@@ -98,8 +111,14 @@ public class MoviesSaved extends AppCompatActivity {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                     Intent intent=new Intent(MoviesSaved.this,MovieDetail.class);
                     intent.putExtra("title",titles.get(position));
+                    intent.putExtra("year", year.get(position));
+                    intent.putExtra("rated", rated.get(position));
+                    intent.putExtra("runtime", runtime.get(position));
+                    intent.putExtra("actors",actors.get(position));
+                    intent.putExtra("plot", plot.get(position));
                     intent.putExtra("origin","save");
                     startActivity(intent);
                 }

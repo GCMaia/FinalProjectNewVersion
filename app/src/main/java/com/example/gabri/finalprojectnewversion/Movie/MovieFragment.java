@@ -66,6 +66,11 @@ public class MovieFragment extends android.app.Fragment { //or android.app.Fragm
                 SQLiteDatabase db = movieDatabase.getWritableDatabase();
                 ContentValues contentValues = new ContentValues();
                 contentValues.put(MovieDatabase.KEY_TITLE,bundle.getString("title"));
+                contentValues.put(MovieDatabase.KEY_YEAR, bundle.getString("year"));
+                contentValues.put(MovieDatabase.KEY_RATED, bundle.getString("rating"));
+                contentValues.put(MovieDatabase.KEY_RUNTIME, bundle.getString("runtime"));
+                contentValues.put(MovieDatabase.KEY_ACTORS, bundle.getString("actors"));
+                contentValues.put(MovieDatabase.KEY_PLOT, bundle.getString("plot"));
                 db.insert(MovieDatabase.TABLE_NAME, null, contentValues);
                 db.close();
                 Toast.makeText(context, "Movie Saved", Toast.LENGTH_LONG).show();
