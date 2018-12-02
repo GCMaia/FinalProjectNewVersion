@@ -25,47 +25,47 @@ import java.util.ArrayList;
 
 public class CBCSavedNewsActivity extends AppCompatActivity {
 
-    private String TAG = "CBC-SavedNewsActivity";
+  private String TAG = "CBC-SavedNewsActivity";
 
-    public static final String INTENT_NEWS_ID = "CBCNewsSavedNews-Intent-News";
-    public static final String INTENT_NEWS_BODY = "CBCNewsSavedNews-Intent-Body";
-    public static final String INTENT_NEWS_URL = "CBCNewsSavedNews-Intent-Url";
+  public static final String INTENT_NEWS_ID = "CBCNewsSavedNews-Intent-News";
+  public static final String INTENT_NEWS_BODY = "CBCNewsSavedNews-Intent-Body";
+  public static final String INTENT_NEWS_URL = "CBCNewsSavedNews-Intent-Url";
 
 //    private ArrayList<News> newsList = new ArrayList<>();
 //    private NewsAdapter adapterListNews;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cbcsaved_news);
-        loadAppBar("Saved News");
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_cbcsaved_news);
+    loadAppBar("Saved News");
 
-        loadFragment();
-        //loadDbSavedNews();
-        //loadListNewsAdapter();
-    }
+    loadFragment();
+    //loadDbSavedNews();
+    //loadListNewsAdapter();
+  }
 
-    private void loadAppBar ( String title ) {
-        Toolbar tb = findViewById(R.id.cbc_toolbar);
-        setSupportActionBar(tb);
-        ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
-        ab.setTitle(title);
-        Log.d(TAG, "Loaded App Bar");
-    }
+  private void loadAppBar ( String title ) {
+    Toolbar tb = findViewById(R.id.cbc_toolbar);
+    setSupportActionBar(tb);
+    ActionBar ab = getSupportActionBar();
+    ab.setDisplayHomeAsUpEnabled(true);
+    ab.setTitle(title);
+    Log.d(TAG, "Loaded App Bar");
+  }
 
-    private void loadFragment () {
-        Bundle args = new Bundle();
-        args.putBoolean("GET_FROM_DATABASE", true);
+  private void loadFragment () {
+    Bundle args = new Bundle();
+    args.putBoolean("GET_FROM_DATABASE", true);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        CBCNewsListFragment fragment = new CBCNewsListFragment();
-        fragment.setArguments(args);
-        fragmentTransaction.add(R.id.cbc_fragment_framelayout, fragment);
-        fragmentTransaction.commit();
-    }
+    FragmentManager fragmentManager = getSupportFragmentManager();
+    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+    CBCNewsListFragment fragment = new CBCNewsListFragment();
+    fragment.setArguments(args);
+    fragmentTransaction.add(R.id.cbc_fragment_framelayout, fragment);
+    fragmentTransaction.commit();
+  }
 
 //    private ArrayList<News> loadDbSavedNews ( ) {
 //        NewsSQLiteOpenHelper db = new NewsSQLiteOpenHelper(CBCSavedNewsActivity.this);

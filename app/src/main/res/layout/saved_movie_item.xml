@@ -29,5 +29,6 @@
         android:layout_alignBaseline="@+id/movieTitle"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="17dp"
+        android:focusable="false"
         android:text="Remove" />
 </RelativeLayout>

@@ -55,47 +55,47 @@ import java.util.List;
 
 public class CBCNewsMain extends AppCompatActivity {
 
-    private String TAG = "CBC-MainActivity";
+  private String TAG = "CBC-MainActivity";
 
-    private List<News> newsList = new ArrayList<>();
-//    private NewsAdapter adapterListNews;
-    private ProgressBar progressBar;
+  private List<News> newsList = new ArrayList<>();
+  //    private NewsAdapter adapterListNews;
+  private ProgressBar progressBar;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cbcnews_main);
-        loadAppBar("CBC News Reader");
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_cbcnews_main);
+    loadAppBar("CBC News Reader");
 
-        //loadListNewsAdapter();
-        loadFragment();
+    //loadListNewsAdapter();
+    loadFragment();
 
-        //progressBar = findViewById(R.id.cbc_progress_bar);
-        //progressBar.setVisibility(View.VISIBLE);
+    //progressBar = findViewById(R.id.cbc_progress_bar);
+    //progressBar.setVisibility(View.VISIBLE);
 
-        //new DownloadNewsAsyncTask().execute();
-    }
+    //new DownloadNewsAsyncTask().execute();
+  }
 
-    private void loadAppBar ( String title ) {
-        Toolbar tb = findViewById(R.id.cbc_toolbar);
-        setSupportActionBar(tb);
-        ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
-        ab.setTitle(title);
-        Log.d(TAG, "Loaded App Bar");
-    }
+  private void loadAppBar ( String title ) {
+    Toolbar tb = findViewById(R.id.cbc_toolbar);
+    setSupportActionBar(tb);
+    ActionBar ab = getSupportActionBar();
+    ab.setDisplayHomeAsUpEnabled(true);
+    ab.setTitle(title);
+    Log.d(TAG, "Loaded App Bar");
+  }
 
-    private void loadFragment () {
-        Bundle args = new Bundle();
-        args.putBoolean("GET_FROM_DATABASE", false);
+  private void loadFragment () {
+    Bundle args = new Bundle();
+    args.putBoolean("GET_FROM_DATABASE", false);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        CBCNewsListFragment fragment = new CBCNewsListFragment();
-        fragment.setArguments(args);
-        fragmentTransaction.add(R.id.cbc_fragment_framelayout, fragment);
-        fragmentTransaction.commit();
-    }
+    FragmentManager fragmentManager = getSupportFragmentManager();
+    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+    CBCNewsListFragment fragment = new CBCNewsListFragment();
+    fragment.setArguments(args);
+    fragmentTransaction.add(R.id.cbc_fragment_framelayout, fragment);
+    fragmentTransaction.commit();
+  }
 
 //    private void loadListNewsAdapter ( ) {
 //        adapterListNews = new NewsAdapter(this);
@@ -273,30 +273,30 @@ public class CBCNewsMain extends AppCompatActivity {
 //
 //    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_cbcnews_appbar, menu);
-        Log.d(TAG, "Inflated Menu Options");
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.menu_cbcnews_appbar, menu);
+    Log.d(TAG, "Inflated Menu Options");
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    // Handle item selection
+    switch (item.getItemId()) {
+      case R.id.cbc_action_settings:
+        launchActivitySavedNews();
         return true;
+      default:
+        return super.onOptionsItemSelected(item);
     }
+  }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.cbc_action_settings:
-                launchActivitySavedNews();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    private void launchActivitySavedNews ( ) {
-        Intent i = new Intent(this, CBCSavedNewsActivity.class);
-        startActivity(i);
-        Log.d(TAG, "Launched Saved News activity");
-    }
+  private void launchActivitySavedNews ( ) {
+    Intent i = new Intent(this, CBCSavedNewsActivity.class);
+    startActivity(i);
+    Log.d(TAG, "Launched Saved News activity");
+  }
 
 //    private void launchActivityReadNews ( News news ) {
 //        Intent i = new Intent(this, CBCReadNewsActivity.class);
