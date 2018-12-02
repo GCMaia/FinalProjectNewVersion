@@ -10,19 +10,40 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+/**
+ * News database class
+ * @author Natalia Nunes
+ */
 public class NewsSQLiteOpenHelper extends SQLiteOpenHelper {
-
+    /**
+     * log Tag
+     */
     private String TAG = "CBC-NewsSQL";
-
+    /**
+     * database version
+     */
     public static final int DATABASE_VERSION = 1;
+    /**
+     * database name
+     */
     public static final String DATABASE_NAME = "News.db";
 
+    /**
+     * default constructor
+     * @param context app context
+     */
     public NewsSQLiteOpenHelper ( Context context ) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    /**
+     * database contract class
+     * source:https://developer.android.com/training/data-storage/sqlite
+     */
     public final class NewsContract {
-
+        /**
+         * create query
+         */
         public static final String SQL_CREATE_TABLE =
                 "CREATE TABLE " + NewsEntry.TABLE_NAME + " (" +
                         NewsEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -30,6 +51,9 @@ public class NewsSQLiteOpenHelper extends SQLiteOpenHelper {
                         NewsEntry.COLUMN_NAME_URL + " TEXT," +
                         NewsEntry.COLUMN_NAME_BODY + " TEXT)";
 
+        /**
+         * Columns class
+         */
         public class NewsEntry implements BaseColumns {
             public static final String TABLE_NAME = "news";
             public static final String COLUMN_NAME_TITLE = "title";
@@ -38,16 +62,32 @@ public class NewsSQLiteOpenHelper extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * Default onCreate
+     * @param db database instance
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(NewsContract.SQL_CREATE_TABLE);
     }
 
+    /**
+     * Default upgrade
+     * @param db database instance
+     * @param oldVersion old version number
+     * @param newVersion new version number
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onCreate(db);
     }
 
+    /**
+     * Inserts a new article
+     * source: https://developer.android.com/training/data-storage/sqlite
+     * @param n news object
+     * @return inserted Id
+     */
     public long insertNewsEntry ( News n ) {
         // Gets the data repository in write mode
         SQLiteDatabase db = getWritableDatabase();
@@ -65,24 +105,12 @@ public class NewsSQLiteOpenHelper extends SQLiteOpenHelper {
         return newRowId;
     }
 
-    public int deleteNewsEntry ( News n ) {
-
-        return deleteNewsEntry(n.getTitle());
-
-//        // Gets the data repository in write mode
-//        SQLiteDatabase db = getWritableDatabase();
-//
-//        // Define 'where' part of query.
-//        String selection = NewsContract.NewsEntry.COLUMN_NAME_TITLE + " = ?";
-//        // Specify arguments in placeholder order.
-//        String[] selectionArgs = { n.getTitle() };
-//        // Issue SQL statement.
-//        int deletedRows = db.delete(NewsContract.NewsEntry.TABLE_NAME, selection, selectionArgs);
-//
-//        Log.d(TAG, "Deleted News Entry");
-//        return deletedRows;
-    }
-
+    /**
+     * deletes new article
+     * source: https://developer.android.com/training/data-storage/sqlite
+     * @param newsTitle article title
+     * @return deleted id
+     */
     public int deleteNewsEntry ( String newsTitle ) {
         // Gets the data repository in write mode
         SQLiteDatabase db = getWritableDatabase();
@@ -98,6 +126,11 @@ public class NewsSQLiteOpenHelper extends SQLiteOpenHelper {
         return deletedRows;
     }
 
+    /**
+     * selects all news articles
+     * source: https://developer.android.com/training/data-storage/sqlite
+     * @return  ArrayList of a news objects
+     */
     public ArrayList<News> selectAllNewsEntry ( ) {
         ArrayList<News> nl = new ArrayList<>();
 

@@ -2,6 +2,7 @@ package com.example.gabri.finalprojectnewversion.CBCNews;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -22,11 +24,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.gabri.finalprojectnewversion.FoodNutrition.FoodNutritionMain;
+import com.example.gabri.finalprojectnewversion.Movie.MovieInformationMain;
+import com.example.gabri.finalprojectnewversion.OCTranspo.OCTranspoMain;
 import com.example.gabri.finalprojectnewversion.R;
 
 import org.w3c.dom.Text;
@@ -44,38 +51,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * TODO: Edit Text
- * TODO: Menu help: Author, Version, Instructions
- * TODO: Summary of data
- * TODO: Number of articles saved
- * TODO: Average, max and min word count among articles
- * TODO: Translation
- * TODO: Java docs
+ * News Main Activity
+ * @author Natalia Nunes
  */
-
 public class CBCNewsMain extends AppCompatActivity {
-
+    /**
+     * log tag
+     */
     private String TAG = "CBC-MainActivity";
-
+    /**
+     * ArrayList of news objects
+     */
     private List<News> newsList = new ArrayList<>();
-//    private NewsAdapter adapterListNews;
+    /**
+     * progress bar
+     */
     private ProgressBar progressBar;
 
+    /**
+     * activity onCreate - loads toolbar and fragments
+     * @param savedInstanceState   saved instance
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cbcnews_main);
         loadAppBar("CBC News Reader");
-
-        //loadListNewsAdapter();
         loadFragment();
-
-        //progressBar = findViewById(R.id.cbc_progress_bar);
-        //progressBar.setVisibility(View.VISIBLE);
-
-        //new DownloadNewsAsyncTask().execute();
     }
 
+    /**
+     * sets appBar
+     * @param title appBar title
+     */
     private void loadAppBar ( String title ) {
         Toolbar tb = findViewById(R.id.cbc_toolbar);
         setSupportActionBar(tb);
@@ -85,8 +93,12 @@ public class CBCNewsMain extends AppCompatActivity {
         Log.d(TAG, "Loaded App Bar");
     }
 
+    /**
+     * loads the fragment that makes list of news
+     */
     private void loadFragment () {
         Bundle args = new Bundle();
+        //sets that data has to come from HTTP (CBC website)
         args.putBoolean("GET_FROM_DATABASE", false);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -97,182 +109,11 @@ public class CBCNewsMain extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-//    private void loadListNewsAdapter ( ) {
-//        adapterListNews = new NewsAdapter(this);
-//        ListView listViewNews = findViewById(R.id.cbc_listview_newslist);
-//        listViewNews.setAdapter(adapterListNews);
-//        Log.d(TAG, "Loaded List News Adapter");
-//
-//        listViewNews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Log.d(TAG, "Item List Clicked");
-//
-//                launchActivityReadNews(newsList.get(position));
-//            }
-//        });
-//    }
-
-//    private class NewsAdapter extends ArrayAdapter<News> {
-//
-//        NewsAdapter(Context c) {
-//            super(c, 0);
-//        }
-//
-//        public int getCount() {
-//            return newsList.size();
-//        }
-//
-//        public News getItem(int position) {
-//            return newsList.get(position);
-//        }
-//
-//        public long getItemId(int position) {
-//            return position;
-//        }
-//
-//        @NonNull
-//        public View getView(int position, View convertView, ViewGroup parent) {
-//            LayoutInflater inflater = CBCNewsMain.this.getLayoutInflater();
-//            View result = inflater.inflate(R.layout.adapter_cbcnews_main, null);
-//
-//            TextView newsListItem = result.findViewById(R.id.cbc_textview_main_newslist_item);
-//            newsListItem.setText(newsList.get(position).getTitle());
-//
-//            return result;
-//        }
-//    }
-
-
-//    private class DownloadNewsAsyncTask extends AsyncTask<String, Integer, String> {
-//
-//        private final String API_URL = "https://www.cbc.ca/cmlink/rss-world";
-//
-//        private ArrayList<News> newsList = new ArrayList<>();
-//
-//        @Override
-//        protected String doInBackground(String... args) {
-//
-//            try {
-//                InputStream is = downloadUrl(API_URL);
-//
-//                publishProgress(20);
-//
-//                try {
-//                    XmlPullParser parser = Xml.newPullParser();
-//                    parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-//                    parser.setInput(is, null);
-//                    //parser.nextTag();
-//
-//                    int tagTitleCounter = 0;
-//                    int eventType = parser.getEventType();
-//                    while (eventType != XmlPullParser.END_DOCUMENT) {
-//                        String tagName;
-//
-//                        switch (eventType) {
-//                            case XmlPullParser.START_TAG: // Open tag
-//
-//                                String title, body = "", url = "";
-//
-//                                // Get tag name and check if it's a title
-//                                tagName = parser.getName();
-//                                Log.d(TAG, "Parsing XML - Tag Names: " + tagName);
-//
-//                                if ("title".equals(tagName)) {
-//
-//                                    // Skiping the first 2 titles
-//                                    tagTitleCounter++;
-//                                    Log.d(TAG, "Parsing XML - tagTitleCounter: " + tagTitleCounter);
-//                                    if (tagTitleCounter < 3) {
-//                                        break;
-//                                    }
-//
-//                                    // The first text is a title
-//                                    title = parser.nextText();
-//                                    Log.d(TAG, "Parsing XML - News Object: Title: " + title);
-//                                    publishProgress(40);
-//
-//                                    // Next description tag
-//                                    parser.next();
-//                                    while (eventType != XmlPullParser.END_DOCUMENT) {
-//                                        if ("link".equals(parser.getName())) {
-//                                            url = parser.nextText();
-//                                            Log.d(TAG, "Parsing XML - News Object: URL: " + url);
-//                                            publishProgress(60);
-//                                        }
-//
-//                                        if ("description".equals(parser.getName())) {
-//                                            body = parser.nextText();
-//                                            Log.d(TAG, "Parsing XML - News Object: Body: " + body);
-//                                            publishProgress(80);
-//                                            break;
-//                                        }
-//                                        parser.next();
-//                                    }
-//
-//                                    // Setting up the object
-//                                    News n = new News(title);
-//                                    n.setBody(body);
-//                                    n.setUrl(url);
-//
-//                                    // Add to list to adapt on PostExecute
-//                                    newsList.add(n);
-//
-//                                    publishProgress(100);
-//
-//                                } else {
-//                                    break;
-//                                } // End Check Title
-//                        }
-//
-//                        eventType = parser.next();
-//                    }
-//
-//                } catch (XmlPullParserException e) {
-//                    Log.d(TAG, "Could not parse XML");
-//                }
-//            } catch (IOException e) {
-//                Log.d(TAG, "Could not get URL");
-//            }
-//            return "";
-//        }
-//
-//        @Override
-//        protected void onProgressUpdate(Integer... values) {
-//            super.onProgressUpdate(values);
-//
-//            progressBar.setVisibility(View.VISIBLE);
-//            progressBar.setProgress(values[0]);
-//
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String s) {
-//            super.onPostExecute(s);
-//
-//            // Adapt News get from Background to the adapter
-//            CBCNewsMain.this.newsList = newsList;
-//            //////// ******* CBCNewsMain.this.adapterListNews.notifyDataSetChanged();
-//
-//            progressBar.setVisibility(View.INVISIBLE);
-//        }
-//
-//        private InputStream downloadUrl (String urlString) throws IOException {
-//            URL url = new URL(urlString);
-//            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//            conn.setReadTimeout(10000 /* milliseconds */);
-//            conn.setConnectTimeout(15000 /* milliseconds */);
-//            conn.setRequestMethod("GET");
-//            conn.setDoInput(true);
-//            // Starts the query
-//            conn.connect();
-//
-//            Log.d(TAG, "Downloaded URL " + urlString);
-//            return conn.getInputStream();
-//        }
-//
-//    }
-
+    /**
+     * creates menu options
+     * @param menu menu object
+     * @return boolean
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_cbcnews_appbar, menu);
@@ -280,30 +121,95 @@ public class CBCNewsMain extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * sets menu items listeners
+     * @param item MenuItem object
+     * @return boolean
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.cbc_action_settings:
-                launchActivitySavedNews();
+            case R.id.cbc_action_save:
+                Intent is = new Intent(this, CBCSavedNewsActivity.class);
+                startActivity(is);
+                return true;
+            case R.id.action_bus:
+
+                android.app.AlertDialog.Builder busBuilder = new android.app.AlertDialog.Builder(this);
+                busBuilder.setMessage(R.string.questionOCTranspo).setTitle(R.string.OCTranspoTitle)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                Intent ib = new Intent(CBCNewsMain.this, OCTranspoMain.class);
+                                startActivity(ib);
+
+                            }
+                        }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) { }
+                }).show();
+
+                return true;
+            case R.id.action_movie:
+
+
+                android.app.AlertDialog.Builder movieBuilder = new android.app.AlertDialog.Builder(this);
+                movieBuilder.setMessage(R.string.questionMovies).setTitle(R.string.MoviesTitle)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                Intent ib = new Intent(CBCNewsMain.this,  MovieInformationMain.class);
+                                startActivity(ib);
+
+                            }
+                        }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) { }
+                }).show();
+
+
+                return true;
+            case R.id.action_food:
+
+
+                android.app.AlertDialog.Builder foodBuilder = new android.app.AlertDialog.Builder(this);
+                foodBuilder.setMessage(R.string.questionNutrition).setTitle(R.string.NutritionTitle)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                Intent ib = new Intent(CBCNewsMain.this, FoodNutritionMain.class);
+                                startActivity(ib);
+
+                            }
+                        }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) { }
+                }).show();
+
+                return true;
+            case R.id.cbc_action_help:
+
+                LayoutInflater inflater = getLayoutInflater();
+                AlertDialog.Builder builderCustom = new AlertDialog.Builder(CBCNewsMain.this);
+                builderCustom.setView(inflater.inflate(R.layout.cbc_news_help_dialog, null));
+                // Add the buttons
+                builderCustom.setPositiveButton(R.string.cbc_news_help_dialog_close, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User clicked OK button
+                        //finish();
+                    }
+                });
+                // Create the AlertDialog
+                AlertDialog dialogCustom = builderCustom.create();
+                dialogCustom.show();
+
+                return true;
+            case R.id.cbc_action_about:
+                Toast.makeText(getApplicationContext(), getString(R.string.cbc_news_main_about_toast), Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    private void launchActivitySavedNews ( ) {
-        Intent i = new Intent(this, CBCSavedNewsActivity.class);
-        startActivity(i);
-        Log.d(TAG, "Launched Saved News activity");
-    }
 
-//    private void launchActivityReadNews ( News news ) {
-//        Intent i = new Intent(this, CBCReadNewsActivity.class);
-//        i.putExtra(CBCReadNewsActivity.INTENT_NEWS_ID, news.getTitle());
-//        i.putExtra(CBCReadNewsActivity.INTENT_NEWS_BODY, news.getBody());
-//        i.putExtra(CBCReadNewsActivity.INTENT_NEWS_URL, news.getUrl());
-//        startActivity(i);
-//        Log.d(TAG, "Launched Read News activity");
-//    }
+
 }

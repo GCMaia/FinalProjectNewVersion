@@ -23,29 +23,44 @@ import com.example.gabri.finalprojectnewversion.R;
 
 import java.util.ArrayList;
 
+/**
+ * Activity that holds all saved news articles
+ * @author Natalia Nunes
+ */
 public class CBCSavedNewsActivity extends AppCompatActivity {
-
+    /**
+     * log tag
+     */
     private String TAG = "CBC-SavedNewsActivity";
-
+    /**
+     * Intent news´ id argument key
+     */
     public static final String INTENT_NEWS_ID = "CBCNewsSavedNews-Intent-News";
+    /**
+     * Intent news´ body argument key
+     */
     public static final String INTENT_NEWS_BODY = "CBCNewsSavedNews-Intent-Body";
+    /**
+     * Intent news´ url argument key
+     */
     public static final String INTENT_NEWS_URL = "CBCNewsSavedNews-Intent-Url";
 
-//    private ArrayList<News> newsList = new ArrayList<>();
-//    private NewsAdapter adapterListNews;
-
-
+    /**
+     * activity onCreate - loads toolbar and fragments
+     * @param savedInstanceState   saved instance
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cbcsaved_news);
         loadAppBar("Saved News");
-
         loadFragment();
-        //loadDbSavedNews();
-        //loadListNewsAdapter();
     }
 
+    /**
+     * sets appBar
+     * @param title appBar title
+     */
     private void loadAppBar ( String title ) {
         Toolbar tb = findViewById(R.id.cbc_toolbar);
         setSupportActionBar(tb);
@@ -55,8 +70,12 @@ public class CBCSavedNewsActivity extends AppCompatActivity {
         Log.d(TAG, "Loaded App Bar");
     }
 
+    /**
+     * loads the fragment that makes list of news
+     */
     private void loadFragment () {
         Bundle args = new Bundle();
+        //sets that data has to come from database
         args.putBoolean("GET_FROM_DATABASE", true);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -66,67 +85,5 @@ public class CBCSavedNewsActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.cbc_fragment_framelayout, fragment);
         fragmentTransaction.commit();
     }
-
-//    private ArrayList<News> loadDbSavedNews ( ) {
-//        NewsSQLiteOpenHelper db = new NewsSQLiteOpenHelper(CBCSavedNewsActivity.this);
-//        newsList = db.selectAllNewsEntry();
-//        Log.d(TAG, "Selected News entries from DB");
-//        return newsList;
-//    }
-
-//    private void loadListNewsAdapter ( ) {
-//        adapterListNews = new NewsAdapter(this);
-//        ListView listViewNews = findViewById(R.id.cbc_listview_newslist);
-//        listViewNews.setAdapter(adapterListNews);
-//        Log.d(TAG, "Loaded List News Adapter");
-//
-//        listViewNews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Log.d(TAG, "Item List Clicked");
-//
-//                launchActivityReadNews(newsList.get(position));
-//            }
-//        });
-//    }
-
-//    private class NewsAdapter extends ArrayAdapter<News> {
-//
-//        NewsAdapter(Context c) {
-//            super(c, 0);
-//        }
-//
-//        public int getCount() {
-//            return newsList.size();
-//        }
-//
-//        public News getItem(int position) {
-//            return newsList.get(position);
-//        }
-//
-//        public long getItemId(int position) {
-//            return position;
-//        }
-//
-//        @NonNull
-//        public View getView(int position, View convertView, ViewGroup parent) {
-//            LayoutInflater inflater = CBCSavedNewsActivity.this.getLayoutInflater();
-//            View result = inflater.inflate(R.layout.adapter_cbcnews_main, null);
-//
-//            TextView newsListItem = result.findViewById(R.id.cbc_textview_main_newslist_item);
-//            newsListItem.setText(newsList.get(position).getTitle());
-//
-//            return result;
-//        }
-//    }
-
-//    private void launchActivityReadNews ( News news ) {
-//        Intent i = new Intent(this, CBCReadNewsActivity.class);
-//        i.putExtra(INTENT_NEWS_ID, news.getTitle());
-//        i.putExtra(INTENT_NEWS_BODY, news.getBody());
-//        i.putExtra(INTENT_NEWS_URL, news.getUrl());
-//        startActivity(i);
-//        Log.d(TAG, "Launched Read News activity");
-//    }
 
 }

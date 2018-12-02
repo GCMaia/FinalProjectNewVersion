@@ -29,24 +29,50 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-
+/**
+ * Fragment that makes the list and is used by Main Activity and Saved_News Activity
+ * @author Natalia Nunes
+ */
 public class CBCNewsListFragment extends Fragment {
-
+    /**
+     * log tag
+     */
     private String TAG = "CBC-NewsListFragment";
-
+    /**
+     * Actibity context
+     */
     private Context parentContext;
-
+    /**
+     * List of News object
+     */
     private ArrayList<News> newsList = new ArrayList<>();
+    /**
+     * List Adapter
+     */
     private NewsAdapter adapterListNews;
+    /**
+     * progressBar
+     */
     private ProgressBar progressBar;
-
+    /**
+     * fragment argument that determines if the fragment gets data from database or CBC website
+     */
     private boolean argsGetFromDatabase;
-    
+
+    /**
+     * Default constructor
+     */
     public CBCNewsListFragment() {
         // Required empty public constructor
     }
 
-
+    /**
+     * Creates the View
+     * @param inflater inflates the view
+     * @param container
+     * @param savedInstanceState instance state
+     * @return View object
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cbcnews_list, container, false);
@@ -67,7 +93,10 @@ public class CBCNewsListFragment extends Fragment {
         return view;
     }
 
-
+    /**
+     * attaches the Activity context
+     * @param context Activity context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -75,7 +104,10 @@ public class CBCNewsListFragment extends Fragment {
         Log.d(TAG, "Fragment has attached Context");
     }
 
-
+    /**
+     * loads the News list from database
+     * @return News list object
+     */
     private ArrayList<News> loadDbSavedNews ( ) {
         NewsSQLiteOpenHelper db = new NewsSQLiteOpenHelper(parentContext);
         newsList = db.selectAllNewsEntry();
@@ -83,7 +115,10 @@ public class CBCNewsListFragment extends Fragment {
         return newsList;
     }
 
-
+    /**
+     * sets ListView adapter and the list item click
+     * @param view View object
+     */
     private void loadListNewsAdapter ( View view ) {
         adapterListNews = new NewsAdapter(parentContext);
         ListView listViewNews = view.findViewById(R.id.cbc_listview_newslist);
@@ -99,25 +134,53 @@ public class CBCNewsListFragment extends Fragment {
         });
     }
 
-
+    /**
+     * ListAdapter Class
+     * adapts the list of news into the view
+     * based on lab6
+     */
     private class NewsAdapter extends ArrayAdapter<News> {
-
+        /**
+         * default constructor
+         * @param c context
+         */
         NewsAdapter(Context c) {
             super(c, 0);
         }
 
+        /**
+         * gets list size
+         * @return list size
+         */
         public int getCount() {
             return newsList.size();
         }
 
+        /**
+         * gets list item
+         * @param position item position
+         * @return list item
+         */
         public News getItem(int position) {
             return newsList.get(position);
         }
 
+        /**
+         * gets list item index
+         * @param position index
+         * @return index
+         */
         public long getItemId(int position) {
             return position;
         }
 
+        /**
+         * makes the list item View
+         * @param position index
+         * @param convertView view of list
+         * @param parent ViewGroup
+         * @return view
+         */
         @NonNull
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = CBCNewsListFragment.this.getLayoutInflater();
@@ -131,13 +194,24 @@ public class CBCNewsListFragment extends Fragment {
     }
 
 
-
+    /**
+     * AsyncTask class that loads news data from CBC website
+     */
     private class DownloadNewsAsyncTask extends AsyncTask<String, Integer, String> {
-
+        /**
+         * website URL
+         */
         private final String API_URL = "https://www.cbc.ca/cmlink/rss-world";
-
+        /**
+         * news list
+         */
         private ArrayList<News> newsList = new ArrayList<>();
 
+        /**
+         * loads news from CBC website
+         * @param args
+         * @return String
+         */
         @Override
         protected String doInBackground(String... args) {
 
@@ -225,6 +299,10 @@ public class CBCNewsListFragment extends Fragment {
             return "";
         }
 
+        /**
+         * Updates progressBar data
+         * @param values integer
+         */
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
@@ -234,6 +312,10 @@ public class CBCNewsListFragment extends Fragment {
 
         }
 
+        /**
+         * Transfer local newslist to fragment class
+         * @param s Default string
+         */
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
@@ -245,6 +327,15 @@ public class CBCNewsListFragment extends Fragment {
             progressBar.setVisibility(View.INVISIBLE);
         }
 
+
+        /**
+         * Downloads data from URL
+         * Copied from lab 6.
+         *
+         * @param urlString String of the URL
+         * @return URL content
+         * @throws IOException
+         */
         private InputStream downloadUrl (String urlString) throws IOException {
             URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -262,7 +353,10 @@ public class CBCNewsListFragment extends Fragment {
     }
 
 
-
+    /**
+     * Intent to read News Activity passing news article data
+     * @param news News object
+     */
     private void launchActivityReadNews ( News news ) {
         Intent i = new Intent(parentContext, CBCReadNewsActivity.class);
         i.putExtra(CBCReadNewsActivity.INTENT_NEWS_ID, news.getTitle());

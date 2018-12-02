@@ -1,5 +1,6 @@
 package com.example.gabri.finalprojectnewversion.OCTranspo;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -242,6 +243,7 @@ public class OCTranspoMain extends AppCompatActivity {
             return null;
         }
 
+        @SuppressLint("StringFormatInvalid")
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 

@@ -15,20 +15,6 @@
         android:elevation="4dp"
         android:titleTextColor="@color/colorTextLight" />
 
-    <!--<ProgressBar-->
-    <!--android:id="@+id/cbc_progress_bar"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--android:visibility="invisible"-->
-    <!--app:layout_constraintTop_toTopOf="@+id/cbc_fragment_framelayout" />-->
-
-    <!--<ListView-->
-    <!--android:id="@+id/cbc_listview_newslist"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/cbc_toolbar" />-->
-
     <FrameLayout
         android:id="@+id/cbc_fragment_framelayout"
         android:layout_width="match_parent"
