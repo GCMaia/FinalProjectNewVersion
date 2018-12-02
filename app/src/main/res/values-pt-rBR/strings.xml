@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Projeto Final</string>
+    <string name="hello_blank_fragment">Olá Fragmento em branco</string>
+    <string name="CBCnews">CBC</string>
+    <string name="Movies">Filmes</string>
+    <string name="FoodNutrition">Nutrição</string>
+    <string name="OCtranspo">OC Transpo</string>
+    <string name="CourseCode">CST2355</string>
+    <string name="OCTranspoEditText">Selecione o ponto de ônibus</string>
+    <string name="OCTranspoButton">busca</string>
+    <string name="cbc_menu_item_saved_news">Notícias salvas</string>
+    <string name="cbc_read_news_button_read_article">Ler o artigo inteiro</string>
+    <string name="cbc_read_news_button_save_news"> Salvar Notícias </string>
+    <string name="cbc_read_news_toast_saved">Artigo salvo</string>
+    <string name="cbc_read_news_toast_deleted">Artigo apagado</string>
+    <string name="cbc_read_news_button_delete_news">Apagar</string>
+    <string name="cbc_read_news_button_delete_news_after">Apagado</string>
+    <string name="cbc_read_news_button_save_news_after">Salvo</string>
+    <string name="cbc_menu_item_help">Ajuda</string>
+    <string name="cbc_news_help_dialog_close">Fechar</string>
+    <string name="cbc_news_delete_dialog_question">Você tem certeza que quer apagar este artigo?</string>
+    <string name="cbc_news_help_dialog">
+        Este applicativo mostra todas as notícias recentes da CBC News. Você pode salvar as notícias e vê-las na tela de salvas
+    </string>
+    <string name="noBuses">Nenhum ônibus encontrado </string>
+    <string name="hasBuses">"    "</string>
+    <string name="ocQuery">query completada</string>
+    <string name="questionCBC">"Aceito, você será tranferido para a página principal da CBCNews "</string>
+    <string name="CBCTitle">Ir para a página principal da CBCNews?</string>
+    <string name="questionMovies">"Aceito, você será tranferido para a página principal de Filmes "</string>
+    <string name="MoviesTitle">Ir para a página principal de filmes?</string>
+    <string name="questionOCTranspo">Aceito, você será tranferido para a página principal da OCTranspo</string>
+    <string name="OCTranspoTitle">Ir para a página principal da OCTranspo?</string>
+    <string name="questionNutrition">Aceito, você será tranferido para a página principal da Nutrição</string>
+    <string name="NutritionTitle">Ir para a página principal da Nutrição?</string>
+    <string name="yes">sim</string>
+    <string name="no">não</string>
+    <string name="OCTranspoAbout">Versão 1.0 por Gabriel Maia</string>
+    <string name="OCTranspoHelp">Guia OCTranspo</string>
+    <string name="OCTranspoHelpGuide">-Para procurar por um ponto de ônibus, digite o número do ponto de ônibus e pressione busca</string>
+    <string name="OCTranspoBusStopAndName">nome</string>
+    <string name="OCTranspoSaveString">Pressione o botão para salvar a rota</string>
+
+    <string name="OCTranspoStartTime">Hora da partida</string>
+    <string name="OCTranspoDelayedTime">atrasado</string>
+    <string name="OCTranspoBusHeading">Informação da rota</string>
+    <string name="OCTranspoBusNo">Número do Ônibus</string>
+    <string name="OCTranspoLatitudeString">Latitude</string>
+    <string name="OCTranspoLongitudeString">Longitude</string>
+    <string name="OCTranspoDestinationString">Destino</string>
+    <string name="OCTranspoSpeedString">Velocidade</string>
+    <string name="OCTranspoStartString">Hora de partida</string>
+    <string name="OCTranspoDelayedString">Tempo de atraso</string>
+    <string name="titleMovie">Título</string>
+    <string name="year">Data de lançamento</string>
+    <string name="Rated">Pontuação</string>
+    <string name="Runtime">Hora</string>
+    <string name="Actors">Atores</string>
+    <string name="Plot">Enredo</string>
+    <string name="OCTranspoSpeed">%1s km/h</string>
+    <string name="OCTranspoLatitude">N %1s</string>
+    <string name="OCTranspoLongitude">W %1s</string>
+    <string name="cbc_news_item_menu_about">Sobre</string>
+    <string name="cbc_news_main_about_toast">Versão 1.0 por Natalia Nunes</string>
+
+</resources>
