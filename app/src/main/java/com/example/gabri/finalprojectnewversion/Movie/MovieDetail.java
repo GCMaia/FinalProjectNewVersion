@@ -1,22 +1,30 @@
 package com.example.gabri.finalprojectnewversion.Movie;
 
-import android.app.Activity;
+
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.graphics.Bitmap;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
+
 
 import com.example.gabri.finalprojectnewversion.R;
 
-import java.io.File;
-
+/**
+ *class passes information and allows fragment to be viewed
+ */
 public class MovieDetail extends AppCompatActivity {
+    /**
+     * class variables
+     */
     String title,year, rating,runtime, actors, plot,poster;
 
-
+    /**
+     * onCreate method retrieves information from MovieInformationClass through intent and packages it in a bundle for fragment use
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,19 +1,19 @@
 package com.example.gabri.finalprojectnewversion.Movie;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,17 +38,22 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+
+/**
+ * class that displays initial movie search screen
+ */
 public class MovieInformationMain extends AppCompatActivity {
+    /**
+     * class variables
+     */
     protected static final String ACTIVITY_NAME = "MovieInfoActivity";
     final ArrayList<String> movieList =new ArrayList<>();
     final ArrayList<Bitmap> posterList=new ArrayList<>();
@@ -69,6 +74,10 @@ public class MovieInformationMain extends AppCompatActivity {
     Bitmap picture;
     String posterName;
 
+    /**
+     * onCreate method initializes various class variables, toolbar, progress bar, and onclick listeners for list item and search button
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +91,6 @@ public class MovieInformationMain extends AppCompatActivity {
         progressBarMovie=findViewById(R.id.progress);
         progressBarMovie.setVisibility(View.INVISIBLE);
         editText=findViewById(R.id.enterMovie);
-
 
         Toolbar movieToolBar=findViewById(R.id.movie_toolbar);
         setSupportActionBar(movieToolBar);
@@ -127,18 +135,50 @@ public class MovieInformationMain extends AppCompatActivity {
         });
 
     }
+
+    /**
+     * inner class that handles arraylist to be display in list view
+     */
     class MovieAdapter extends ArrayAdapter<String>{
+        /**
+         * constructor of movie adapter
+         * @param ctx context
+         */
         public MovieAdapter(Context ctx){
             super(ctx,0);
         }
+
+        /**
+         * getter for number of objects in arraylist
+         * @return size of arraylist
+         */
         public int getCount(){
             return movieList.size();
         }
+
+        /**
+         * getter for returning movie on list at specific position
+         * @param position index of movie in array list
+         * @return movie title
+         */
         public String getMovie(int position){
             return movieList.get(position);
         }
+
+        /**
+         * getter for movie poster
+         * @param position index of movie poster in array list
+         * @return bitmap of poster
+         */
         public Bitmap getPoster(int position){ return posterList.get(position);}
 
+        /**
+         * getter for current view
+         * @param position specific index
+         * @param convertView
+         * @param parent
+         * @return view with set xml layout and text
+         */
         public View getView(int position, View convertView, ViewGroup parent){
             LayoutInflater inflater=MovieInformationMain.this.getLayoutInflater();
             View result;
@@ -152,10 +192,18 @@ public class MovieInformationMain extends AppCompatActivity {
 
     }
 
+    /**
+     * method to retrieve information from movie api
+     */
     class MovieQuery extends AsyncTask<String, Integer,String> {
         String titleTemp;
         final String apiKey="c47e9b47";
 
+        /**
+         * method retrieves movie information from api using an encoded movie title entered by user
+         * @param strings
+         * @return
+         */
         @Override
         protected String doInBackground(String... strings) {
             //http://www.omdbapi.com/?apikey=c47e9b47&r=xml&t=titanic
@@ -227,11 +275,21 @@ public class MovieInformationMain extends AppCompatActivity {
             catch(Exception e){}
             return null;
         }
+
+        /**
+         * method checks if file exists in local directory
+         * @param fname name of file
+         * @return true if file exists in directory
+         */
         public boolean fileExistance(String fname){
             File file = getBaseContext().getFileStreamPath(fname);
             return file.exists();
         }
 
+        /**
+         * method executes after query is done, sets progress bar to invisible
+         * @param s
+         */
         @Override
         protected void onPostExecute(String s){
             super.onPostExecute(s);
@@ -240,17 +298,21 @@ public class MovieInformationMain extends AppCompatActivity {
         }
     }
 
-
-
-
-
-
-
-
+    /**
+     * method inflates the toolbar
+     * @param m menu layout to inflate
+     * @return true if toolbar is inflated
+     */
     public boolean onCreateOptionsMenu(Menu m){
         getMenuInflater().inflate(R.menu.menu_movie_appbar,m);
         return true;
     }
+
+    /**
+     * method sets actions for each item selected in toolbar
+     * @param mi menu item clicked by user
+     * @return true if action is successfully executed
+     */
     public boolean onOptionsItemSelected (MenuItem mi){
         int id=mi.getItemId();
         AlertDialog.Builder builder=new AlertDialog.Builder(MovieInformationMain.this);
@@ -325,7 +387,7 @@ public class MovieInformationMain extends AppCompatActivity {
                 dialog.show();
                 break;
             case R.id.action_five:
-                Toast.makeText(MovieInformationMain.this,"Movie Information by Mary Anne Bernardino",Toast.LENGTH_LONG).show();
+                Toast.makeText(MovieInformationMain.this,"Movie Information Version 1.0 by Mary Anne Bernardino",Toast.LENGTH_LONG).show();
                 break;
             case R.id.action_six:
                 builder.setTitle("Movie Information Help").setMessage("To begin looking for a movie, type the name of the movie into the textbox and click the search button").show();

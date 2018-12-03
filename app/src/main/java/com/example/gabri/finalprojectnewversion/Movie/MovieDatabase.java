@@ -6,7 +6,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+/**
+ * class for creating the movie database that holds all the movie details
+ */
 public class MovieDatabase extends SQLiteOpenHelper {
+    /**
+     * class variables
+     */
     private static final String TAG="MovieDatabase";
     private static final String DATABASE_NAME="SavedMovies.db";
     private static int VERSION_NUM=4;
@@ -19,16 +25,30 @@ public class MovieDatabase extends SQLiteOpenHelper {
     final static String KEY_ACTORS="Actors";
     final static String KEY_PLOT="Plot";
 
-
+    /**
+     * constructor for database class
+     * @param ctx context
+     */
     public MovieDatabase(Context ctx){
         super(ctx, DATABASE_NAME,null,VERSION_NUM);
     }
+
+    /**
+     * method to create database table
+     * @param db database to be create
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(" CREATE TABLE " + TABLE_NAME + " (" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_TITLE +
                 " TEXT NOT NULL, " + KEY_YEAR + " TEXT NOT NULL, " + KEY_RATED + " TEXT NOT NULL, " + KEY_RUNTIME + " TEXT NOT NULL, " + KEY_ACTORS + " TEXT NOT NULL, " + KEY_PLOT + " TEXT NOT NULL );");
     }
 
+    /**
+     * method to recreate database when version number changes
+     * @param db database that is being manipulated
+     * @param oldVersion old version number
+     * @param newVersion new version number
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME);
@@ -37,6 +57,10 @@ public class MovieDatabase extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * method executes SQL query to retrieve all information from database
+     * @return cursor object that holds all the information of the saved movies table
+     */
     public Cursor getAllSavedMovies(){
         SQLiteDatabase movies=this.getReadableDatabase();
         Cursor cursor=movies.rawQuery("SELECT * FROM "+TABLE_NAME,null);

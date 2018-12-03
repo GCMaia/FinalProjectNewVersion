@@ -1,34 +1,48 @@
 package com.example.gabri.finalprojectnewversion.Movie;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
+
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gabri.finalprojectnewversion.R;
 
-public class MovieFragment extends android.app.Fragment { //or android.app.Fragment
-
-    Bundle bundle;
+/**
+ * class creating Movie Fragment
+ */
+public class MovieFragment extends android.app.Fragment {
+    /**
+     * class variables
+     */
+    Bundle bundle; //holds information retrieved from MovieInformationMain (API)
     Context context;
 
+    /**
+     * onCreate method initializes class, and retrieves bundle from MovieInformationMain class
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bundle=this.getArguments();
     }
 
+    /**
+     * method sets information from API to fragment and passes information when user wants to save a movie
+     * @param layoutInflater inflates the movie fragment xml
+     * @param viewGroup
+     * @param savedInstance
+     * @return movie fragment view
+     */
     @Override
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle savedInstance){
         View result=layoutInflater.inflate(R.layout.activity_movie_fragment,viewGroup,false);
@@ -51,12 +65,6 @@ public class MovieFragment extends android.app.Fragment { //or android.app.Fragm
         TextView plot=result.findViewById(R.id.plot);
         plot.setText(String.format(res.getString(R.string.Plot),bundle.getString("plot")));
 
-        String origin = bundle.getString("origin");
-//        if (origin==null){
-//            save.setVisibility(View.VISIBLE);
-//        }else{
-//            save.setVisibility(View.GONE);
-//        }
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +87,10 @@ public class MovieFragment extends android.app.Fragment { //or android.app.Fragm
         return result;
     }
 
+    /**
+     * method called when fragment class is called
+     * @param ctx current context
+     */
     @Override
     public void onAttach(Context ctx){
         super.onAttach(ctx);

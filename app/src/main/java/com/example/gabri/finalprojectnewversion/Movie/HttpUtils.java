@@ -7,7 +7,15 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * class that gets image from a specified URL
+ */
 class HttpUtils {
+  /**
+   * getter for image via url
+   * @param url url object to retrieve image from
+   * @return bitmap image
+   */
   public static Bitmap getImage(URL url) {
     HttpURLConnection connection = null;
     try {
@@ -27,6 +35,11 @@ class HttpUtils {
     }
   }
 
+  /**
+   * getter for image via provided string
+   * @param urlString string used to make url object
+   * @return bitmap image
+   */
   public static Bitmap getImage(String urlString) {
     try {
       URL url = new URL(urlString);

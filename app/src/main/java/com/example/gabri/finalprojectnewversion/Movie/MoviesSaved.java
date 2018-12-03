@@ -1,11 +1,10 @@
 package com.example.gabri.finalprojectnewversion.Movie;
 
-import android.app.Activity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Movie;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -20,12 +19,18 @@ import android.widget.Toast;
 
 import com.example.gabri.finalprojectnewversion.R;
 
-import org.w3c.dom.Text;
+
 
 import java.util.ArrayList;
-import java.util.Collection;
 
+
+/**
+ * class holding and displaying the saved movies
+ */
 public class MoviesSaved extends AppCompatActivity {
+    /**
+     * class variables
+     */
     MovieDatabase movieDatabase;
     ArrayList<Integer> ID;
     ArrayList<String> titles;
@@ -36,6 +41,11 @@ public class MoviesSaved extends AppCompatActivity {
     ArrayList<String> actors;
     SavedMovieAdapter savedMovieAdapter;
     ListView listView;
+
+    /**
+     * onCreate method initializing class variables and getting the saved movies
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,12 +63,11 @@ public class MoviesSaved extends AppCompatActivity {
         getSavedMovies();
     }
 
+    /**
+     * getter method for saved movies
+     */
     public void getSavedMovies(){
         Cursor cursor=movieDatabase.getAllSavedMovies();
-        if (cursor.getCount()==0){
-            //Toast.makeText(this,"No Movies Saved",Toast.LENGTH_LONG).show();
-        }
-        else{
             while (cursor.moveToNext()){
                 ID.add(cursor.getInt(0));
                 titles.add(cursor.getString(1));
@@ -72,9 +81,11 @@ public class MoviesSaved extends AppCompatActivity {
                 savedMovieAdapter.notifyDataSetChanged();
             }
 
-        }
     }
 
+    /**
+     * inner class for setting movie title, functional remove button and clickable listview item
+     */
     class SavedMovieAdapter extends ArrayAdapter<String> {
 
         public SavedMovieAdapter(Context context) {
