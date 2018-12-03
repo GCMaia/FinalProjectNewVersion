@@ -49,7 +49,7 @@ import java.util.ArrayList;
 public class FoodNutritionMain extends AppCompatActivity {
     private android.support.v7.widget.Toolbar foodToolbar;
     private RelativeLayout foodLayout;
-    private Button nutritionButton;
+    private Button nutritionButton,favouriteFood;
     private EditText foodName;
     private  TextView calories;
 
@@ -128,6 +128,14 @@ public class FoodNutritionMain extends AppCompatActivity {
             }
         });
 
+        favouriteFood = (Button)findViewById(R.id.FavouriteFood);
+        favouriteFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent( FoodNutritionMain.this, FoodNutrition_favourites_list.class);
+                startActivity(intent);
+            }
+        });
 
 
     }

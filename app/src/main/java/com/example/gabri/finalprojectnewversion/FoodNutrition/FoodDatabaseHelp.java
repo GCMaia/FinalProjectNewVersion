@@ -121,6 +121,9 @@ public class FoodDatabaseHelp extends SQLiteOpenHelper {
         String query = "Select * from " + FOODNUTRITIONRESULT_TABLE_NAME;
         return database.rawQuery(query, null);
     }
+
+
+
 }
 
 

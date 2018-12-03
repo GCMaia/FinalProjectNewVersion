@@ -39,12 +39,13 @@
         android:text="Serach" />
 
     <Button
-        android:id="@+id/Foodname"
+        android:id="@+id/FavouriteFood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/nutritionButton"
+        android:layout_below="@+id/nutritionButton"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentLeft="true"
-        android:text="Food Item: " />
+        android:text="Favorite Food" />
 
     <TextView
         android:id="@+id/nutritionPart"
