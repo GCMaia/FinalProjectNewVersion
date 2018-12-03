@@ -23,6 +23,21 @@
         This app gets all recent CBC news. You can save a news article and see your saved articles on the Save screen.
     </string>
     <string name="toastMovieSaved">Movie Saved</string>
+    <string name="AboutFoodNutrition">activity version 1.0 by Ying Lu</string>
+    <string name="HelpFoodNutrition">Type a food name then press to search</string>
+    <string name="FoodNutritionSearchResult">Search Result:</string>
+    <string name="FoodNutritionFoodName">Food Name:  </string>
+    <string name="FoodNutritionCalories">Calories:  </string>
+    <string name="FoodNutritionFat">Fat:   </string>
+    <string name="FoodNutritionSaveButton">Save</string>
+    <string name="FoodNutritionCancelButton">Cancel</string>
+    <string name="FoodNutritionsSaveFavorites">View Favorites</string>
+    <string name="FoodNutritionSearch">Search</string>
+    <string name="FoodNutritionEnterFood">Enter the food name</string>
+    <string name="AverageCal">AverageCal</string>
+    <string name="Maximum">Maximum</string>
+    <string name="Minimum">Minimum</string>
+    <string name="TotalCal">TotalCal</string>
     <string name="XMLNoSavedMovies">No Movies Saved</string>
     <string name="noBuses">No buses found</string>
     <string name="hasBuses">%1s - %2s</string>

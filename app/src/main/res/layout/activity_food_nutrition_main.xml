@@ -36,7 +36,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="171dp"
-        android:text="Serach" />
+        android:text="@string/FoodNutritionSearch" />
 
     <Button
         android:id="@+id/FavouriteFood"
@@ -45,7 +45,7 @@
         android:layout_below="@+id/nutritionButton"
         android:layout_centerHorizontal="true"
         android:layout_alignParentLeft="true"
-        android:text="Favorite Food" />
+        android:text="@string/FoodNutritionsSaveFavorites" />
 
     <TextView
         android:id="@+id/nutritionPart"
@@ -54,7 +54,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="77dp"
-        android:text="Enter the food name" />
+        android:text="@string/FoodNutritionEnterFood" />
 
 
     <EditText

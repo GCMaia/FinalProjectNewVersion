@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:text="TotalCal" />
+        android:text="@string/TotalCal" />
 
     <Button
         android:id="@+id/average_calories"
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toStartOf="@+id/Calminimum"
-        android:text="AverageCal" />
+        android:text="@string/AverageCal" />
 
     <Button
         android:id="@+id/Calminimum"
@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:text="Minimum" />
+        android:text="@string/Minimum" />
 
 
     <Button
@@ -65,6 +65,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/total_calories"
-        android:text="Maximum" />
+        android:text="@string/Maximum" />
 
 </RelativeLayout>

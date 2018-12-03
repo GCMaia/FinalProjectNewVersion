@@ -27,11 +27,11 @@
         />
 
     <item
-        android:title="help"
+        android:title="@string/item_menu_help"
         android:orderInCategory="104"
         android:id= "@+id/food_help"/>
     <item
-        android:title="about"
+        android:title="@string/item_menu_about"
         android:orderInCategory="105"
         android:id= "@+id/food_about"/>
 

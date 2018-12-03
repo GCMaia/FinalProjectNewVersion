@@ -1,12 +1,10 @@
 package com.example.gabri.finalprojectnewversion.FoodNutrition;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.nfc.Tag;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -22,10 +20,6 @@ public class FoodDatabaseHelp extends SQLiteOpenHelper {
     public static final String[] COLUMN_ALL = new String[]{Key_FOOD};
     public static final String Key_CALORIES = "Calories";
     public static final String Key_Fat = "Fat";
-    public static final String Average_Calories = "AverageCal";
-    public static final String Total_Calories = "TotalCal";
-    public static final String Minimum_Calories = "MinimumCal";
-    public static final String Maximum_Calories = "MaximumCal";
     public static final String CREATE_FOODNUTRITIONRESULT_TABLE = " CREATE TABLE " +
             FOODNUTRITIONRESULT_TABLE_NAME + " (" + Key_ID +
             " INTEGER PRIMARY KEY AUTOINCREMENT, " + Key_FOOD +
@@ -42,13 +36,6 @@ public class FoodDatabaseHelp extends SQLiteOpenHelper {
         Log.i("FoodDatabaseHelp","Calling onCreate");
         db.execSQL(CREATE_FOODNUTRITIONRESULT_TABLE);
 
-
-        // Log.i("TAG","Calling onCreate");
-        //db.execSQL(CREATE_FOODNUTRITIONRESULT_TABLE);
-//        db.execSQL("CREATE TABLE " + RESULT_TABLE_NAME +
-//                " ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                "FoodType text, Calories text,  Fat text, AverageCal text, TotalCal text," +
-//                "MinimumCal text, MaximumCal text);");
     }
 
     @Override
@@ -59,26 +46,6 @@ public class FoodDatabaseHelp extends SQLiteOpenHelper {
         db.execSQL(DROP_FOODNUTRITIONRESULT_TABLE);
         onCreate(db);
     }
-
-//    public boolean addData(String FoodType) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put(Key_FOOD, FoodType);
-//
-//        long result = db.insert(FoodDatabaseHelp.FOODNUTRITIONRESULT_TABLE_NAME, null, contentValues);
-//
-//        if (result == -1) {
-//            return false;
-//        } else {
-//            return true;
-//        }
-
-
-//        public Cursor getListContents(){
-//            db = this.getWritableDatabase();
-//            Cursor data = db.rawQuery("SELECT * FROM " + FOODNUTRITIONRESULT_TABLE_NAME, null);
-//            return data;
-//        }
 
     public void insertValue(String foodValue, String fatValue, String calValue) {
         final SQLiteDatabase db = this.getWritableDatabase();
@@ -102,8 +69,6 @@ public class FoodDatabaseHelp extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         final Cursor cursor = db.query(FOODNUTRITIONRESULT_TABLE_NAME, COLUMN_ALL, null, null, null, null, null);
         Log.i(TAG, "Coursor's column count: " + cursor.getColumnCount());
-        final int columnIdIndex = cursor.getColumnIndex(Key_FOOD);
-//        final int columnMessageIndex = cursor.getColumnIndex(KEY_NAME);
 
         for (int i = 0; i < cursor.getColumnCount(); i++)
             Log.i(TAG, " Cursor's Column: " + cursor.getColumnName(i));

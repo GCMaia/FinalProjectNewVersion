@@ -53,10 +53,6 @@ public class FoodNutritionMain extends AppCompatActivity {
     private EditText foodName;
     private  TextView calories;
 
-    private ProgressBar progressBar;
-    private int viewPosition;
-    private Boolean clickAdd;
-    private double total;
 
     private FoodAdapter adapter;
 
@@ -64,13 +60,8 @@ public class FoodNutritionMain extends AppCompatActivity {
     final ArrayList<String> foodNameListview = new ArrayList<>();
     private String nameOfFood;
     Double cal = 0.0;
-    String id;
     Double fat = 0.0;
 
-//   String JSON_STRING ="{\"text\":{\"parsed\":\"food\":\"category\":\"categoryLabel\"}}";
-//   String text;
-//   String parsed;
-//   String hints;
 
 
     @Override
@@ -190,10 +181,6 @@ public class FoodNutritionMain extends AppCompatActivity {
                     JSONObject nutrients = food.getJSONObject("nutrients");
                     cal = nutrients.getDouble("ENERC_KCAL");
                     fat = nutrients.getDouble("FAT");
-//                    for (int i = 0; i < food.length(); i++){
-//                        JSONObject c = food.getJSONObject(i);
-//                        cal = c.getString("ENERC_KCAL");
-                    //                }
 
                 } catch (final JSONException e) {
                     e.getMessage();
@@ -221,7 +208,6 @@ public class FoodNutritionMain extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
         getMenuInflater().inflate(R.menu.menu_food, menu);
         return true;
     }
@@ -232,13 +218,13 @@ public class FoodNutritionMain extends AppCompatActivity {
             case R.id.food_cbc:
 
                 AlertDialog.Builder CBCBuilder = new AlertDialog.Builder(FoodNutritionMain.this);
-                CBCBuilder.setMessage("CBCNews main page").setTitle("Go to CBCNews main page?")
-                        .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                CBCBuilder.setMessage(R.string.CBCnews).setTitle(R.string.questionCBC)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent intent = new Intent(FoodNutritionMain.this, CBCNewsMain.class);
                                 startActivity(intent);
                             }
-                        }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+                        }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                     }
                 }).show();
@@ -247,13 +233,13 @@ public class FoodNutritionMain extends AppCompatActivity {
             case R.id.food_movie:
 
                 AlertDialog.Builder movieBuilder = new AlertDialog.Builder(FoodNutritionMain.this);
-                movieBuilder.setMessage("Movies main page").setTitle("Go to Movies main page?")
-                        .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                movieBuilder.setMessage(R.string.Movies).setTitle(R.string.questionMovies)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent intent = new Intent(FoodNutritionMain.this, MovieInformationMain.class);
                                 startActivity(intent);
                             }
-                        }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+                        }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                     }
                 }).show();
@@ -263,13 +249,13 @@ public class FoodNutritionMain extends AppCompatActivity {
             case R.id.food_bus:
 
                 AlertDialog.Builder foodBuilder = new AlertDialog.Builder(FoodNutritionMain.this);
-                foodBuilder.setMessage("OCtranspo main page").setTitle("Go to OCTranspo main page?")
-                        .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                foodBuilder.setMessage(R.string.OCtranspo).setTitle(R.string.questionOCTranspo)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent intent = new Intent(FoodNutritionMain.this, OCTranspoMain.class);
                                 startActivity(intent);
                             }
-                        }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+                        }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                     }
                 }).show();
@@ -278,13 +264,13 @@ public class FoodNutritionMain extends AppCompatActivity {
                 break;
             case R.id.food_about:
 
-                Toast aboutToast = Toast.makeText(FoodNutritionMain.this, "activity version 1.0 by Ying Lu", Toast.LENGTH_SHORT);
+                Toast aboutToast = Toast.makeText(FoodNutritionMain.this, R.string.AboutFoodNutrition, Toast.LENGTH_SHORT);
                 aboutToast.show();
                 break;
 
             case R.id.food_help:
                 AlertDialog.Builder helpBuilder = new AlertDialog.Builder(FoodNutritionMain.this);
-                helpBuilder.setTitle("Help").setMessage("Type a food name then press to search \n").show();
+                helpBuilder.setTitle(R.string.item_menu_help).setMessage(R.string.HelpFoodNutrition).show();
                 break;
         }
         return true;

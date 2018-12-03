@@ -29,36 +29,15 @@ import javax.xml.transform.Result;
 public class FoodNutrition_favourites_list extends AppCompatActivity {
 
     FoodDatabaseHelp myDB;
-    private Bundle resultBundle;
-    private FoodNutritionSearchResult parent;
-    private TextView resultId;
-    private TextView foodName;
-    private Button deleteResult;
-    private long id;
-    private String msg;
     private SQLiteDatabase foodDB;
-    private boolean isTablet;
-    private double total;
-    private Handler handler;
-    private int viewposition;
     public  Button AverageCal;
     public  Button TotalCal;
     public  Button MinimumCal;
     public  Button MaximumCal;
     private TextView nutritionInfo;
     private Cursor cursor;
-    private SQLiteDatabase db;
-    private FoodDatabaseHelp foodDatabaseHelp;
-    private Runnable runnable;
     private ListView foodListView;
-    private FrameLayout tabletLayOut;
-    private FoodNutritionMain.FoodAdapter foodAdapter;
-    ArrayList<Result>foodList = new ArrayList<>();
 
-    public static final String Average_Calories = "AverageCal";
-    public static final String Total_Calories = "TotalCal";
-    public static final String Minimum_Calories = "MinimumCal";
-    public static final String Maximum_Calories = "MaximumCal";
     ArrayList<String> arrayListFoodName = new ArrayList<>();
     ArrayList<Integer> arrayListId = new ArrayList<>();
     ArrayList<String> arrayListCal = new ArrayList<>();
@@ -119,27 +98,6 @@ public class FoodNutrition_favourites_list extends AppCompatActivity {
         foodDB = myDB.getWritableDatabase();
 
         getSavedFood();
-
-//        List<String> data = myDB.getAllResults();
-
-//        AverageCal.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                cursor = db.rawQuery("select * from " + foodDatabaseHelp, null);
-//                total = 0.00;
-//                Result result = foodList.get(5);
-//                String[]tempArray = new String[5];
-//
-//
-//
-//                }
-//        });
-
-//        if(data.size()==0){
-//            Toast.makeText(FoodNutrition_favourites_list.this,"The database was empty: (.",Toast.LENGTH_LONG).show();
-//        } else {
-//        }
-
 
     }
 

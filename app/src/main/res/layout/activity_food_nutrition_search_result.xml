@@ -13,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="Search Result:"
+        android:text="@string/FoodNutritionSearchResult"
         tools:layout_editor_absoluteX="67dp"
         tools:layout_editor_absoluteY="27dp" />
 
@@ -25,7 +25,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="62dp"
         android:layout_marginTop="104dp"
-        android:text="Food Type:  "
+        android:text="@string/FoodNutritionFoodName"
         tools:layout_editor_absoluteX="47dp"
         tools:layout_editor_absoluteY="70dp" />
 
@@ -36,7 +36,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/nutritionTextView3"
         android:layout_marginTop="155dp"
-        android:text="Calories:  "
+        android:text="@string/FoodNutritionCalories"
         tools:layout_editor_absoluteX="47dp"
         tools:layout_editor_absoluteY="114dp" />
 
@@ -47,7 +47,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/nutritionTextView3"
         android:layout_marginTop="208dp"
-        android:text="Fat:   "
+        android:text="@string/FoodNutritionFat"
         tools:layout_editor_absoluteX="47dp"
         tools:layout_editor_absoluteY="155dp" />
 
@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/colorPrimary"
-        android:text="Save"
+        android:text="@string/FoodNutritionSaveButton"
         tools:layout_editor_absoluteX="182dp"
         tools:layout_editor_absoluteY="513dp" />
 
@@ -111,7 +111,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:background="@color/colorPrimary"
-        android:text="Cancel"
+        android:text="@string/FoodNutritionCancelButton"
         tools:layout_editor_absoluteX="182dp"
         tools:layout_editor_absoluteY="513dp" />
 
@@ -122,7 +122,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@color/colorPrimary"
-        android:text="View Favorites"
+        android:text="@string/FoodNutritionsSaveFavorites"
         tools:layout_editor_absoluteX="182dp"
         tools:layout_editor_absoluteY="513dp"/>
 

@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/savedFoodOnDatabase"
         android:layout_alignParentEnd="true"
-        android:text="Remove"
+        android:text="@string/remove"
         android:focusable="false"/>
 
 </RelativeLayout>
