@@ -89,10 +89,10 @@ public class OCTranspoSavedBuses extends AppCompatActivity {
             TextView savedBusNo = result.findViewById(R.id.savedBusNo);
             savedBusName.setText(getSavedBusHeading(position));
             savedBusNo.setText(getSavedBusNo(position));
+            final TextView hasBus = findViewById(R.id.savedBusesNoSavedBusFound);
 
 
             if (busesNumber.size() != 0){
-                TextView hasBus = findViewById(R.id.savedBusesNoSavedBusFound);
                 hasBus.setText("");
             }
 
@@ -109,6 +109,10 @@ public class OCTranspoSavedBuses extends AppCompatActivity {
                     busesIDs.remove(position);
                     busesName.remove(position);
                     busesNumber.remove(position);
+
+                    if (busesNumber.size() == 0){
+                        hasBus.setText("no saved bus found");
+                    }
 
                     messageAdapter.notifyDataSetChanged();
 
