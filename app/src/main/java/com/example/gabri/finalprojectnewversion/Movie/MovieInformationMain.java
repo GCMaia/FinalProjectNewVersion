@@ -15,6 +15,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -39,6 +40,7 @@ import com.example.gabri.finalprojectnewversion.R;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 import java.io.FileInputStream;
@@ -99,15 +101,18 @@ public class MovieInformationMain extends AppCompatActivity {
         progressBarMovie=findViewById(R.id.progress);
         progressBarMovie.setVisibility(View.INVISIBLE);
         editText=findViewById(R.id.enterMovie);
-        pref=getSharedPreferences("prevMovie",Context.MODE_PRIVATE);
-        String prevMovie=pref.getString("prevTitle","empty");
+//        pref=getSharedPreferences("prevMovie",Context.MODE_PRIVATE);
+//        String prevMovie=pref.getString("prevTitle","empty");
+
+        Toolbar movieToolBar=findViewById(R.id.movie_toolbar);
+        setSupportActionBar(movieToolBar);
+
 //        if (prevMovie!="empty"){
 //            title=prevMovie;
 //            MovieQuery movieQuery=new MovieQuery();
 //            movieQuery.execute();
+//            movieAdapter.notifyDataSetChanged();
 //        }
-        Toolbar movieToolBar=findViewById(R.id.movie_toolbar);
-        setSupportActionBar(movieToolBar);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -137,13 +142,15 @@ public class MovieInformationMain extends AppCompatActivity {
                     title=editText.getText().toString();
 //                    SharedPreferences.Editor prefEdit=pref.edit();
 //                    prefEdit.putString("prevTitle",title);
+//
 //                    prefEdit.apply();
-
                     MovieQuery movieQuery = new MovieQuery();
                     movieQuery.execute();
                     movieAdapter.notifyDataSetChanged();
+
                     editText.setText("");
                     Snackbar.make(search, "All Movies Searched", Snackbar.LENGTH_LONG).show();
+
                     movieList.clear();
                 }
 
@@ -151,6 +158,7 @@ public class MovieInformationMain extends AppCompatActivity {
 
             }
         });
+
 
     }
 
