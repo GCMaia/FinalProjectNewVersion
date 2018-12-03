@@ -22,6 +22,8 @@
     <string name="cbc_news_help_dialog">
         This app gets all recent CBC news. You can save a news article and see your saved articles on the Save screen.
     </string>
+    <string name="toastMovieSaved">Movie Saved</string>
+    <string name="XMLNoSavedMovies">No Movies Saved</string>
     <string name="noBuses">No buses found</string>
     <string name="hasBuses">%1s - %2s</string>
     <string name="ocQuery">query completed</string>

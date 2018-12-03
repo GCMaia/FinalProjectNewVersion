@@ -56,6 +56,8 @@
     <string name="OCTranspoStartString">Hora de partida</string>
     <string name="OCTranspoDelayedString">Tempo de atraso</string>
     <string name="XMLsearchMovie">Pesquisar por filme"</string>
+    <string name="XMLNoSavedMovies">Sem filmes salvo</string>
+    <string name="toastMovieSaved">Filme Salvo</string>
     <string name="titleMovie">Título: %1s</string>
     <string name="year">Data de lançamento: %1s</string>
     <string name="Rated">Pontuação: %1s</string>

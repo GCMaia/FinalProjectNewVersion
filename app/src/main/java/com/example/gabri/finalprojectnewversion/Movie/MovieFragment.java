@@ -122,7 +122,7 @@ public class MovieFragment extends android.app.Fragment {
                 contentValues.put(MovieDatabase.KEY_POSTER, bundle.getString("poster"));
                 db.insert(MovieDatabase.TABLE_NAME, null, contentValues);
                 db.close();
-                Toast.makeText(context, "Movie Saved", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, R.string.toastMovieSaved, Toast.LENGTH_LONG).show();
             }
         });
         return result;

@@ -30,5 +30,5 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="17dp"
         android:focusable="false"
-        android:text="Remove" />
+        android:text="@string/remove" />
 </RelativeLayout>
