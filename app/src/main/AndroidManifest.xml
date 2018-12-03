@@ -39,6 +39,9 @@
         <activity android:name=".Movie.MovieDetail" />
         <activity android:name=".Movie.MovieFragment" />
         <activity android:name=".Movie.MoviesSaved"></activity>
+        <activity android:name=".FoodNutrition.FoodNutrition_favourites_list" />
+        <activity android:name=".FoodNutrition.FoodNutritionSearchResult" />
+
     </application>
 
 </manifest>

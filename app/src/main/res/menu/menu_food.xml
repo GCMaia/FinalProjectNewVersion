@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <item
+        android:title="@string/CBCnews"
+        android:orderInCategory="101"
+        android:id="@+id/food_cbc"
+        android:icon="@drawable/cbcnews_toolbar_icon"
+        app:showAsAction="always"
+        />
+    <item
+        android:title="@string/OCtranspo"
+        android:orderInCategory="102"
+        android:id="@+id/food_bus"
+        android:icon="@drawable/octranspo_toolbar_icon"
+        app:showAsAction="always"
+        />
+    <item
+        android:title="@string/Movies"
+        android:orderInCategory="103"
+        android:id="@+id/food_movie"
+        android:icon="@drawable/movies_toolbar_icon"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:title="help"
+        android:orderInCategory="104"
+        android:id= "@+id/food_help"/>
+    <item
+        android:title="about"
+        android:orderInCategory="105"
+        android:id= "@+id/food_about"/>
+
+
+</menu>

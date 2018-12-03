@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context=".FoodNutrition.FoodNutrition_fragment">
+
+    <ImageView
+        android:id="@+id/foodNutritionImageView"
+        android:layout_width="132dp"
+        android:layout_height="67dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/food_nutrition" />
+
+    <TextView
+        android:id="@+id/nutrition_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="18sp"
+        android:gravity="start" />
+
+
+    <Button
+        android:id="@+id/total_calories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/average_calories"
+        android:text="TotalCal" />
+
+    <Button
+        android:id="@+id/average_calories"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Calmaximum"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="107dp"
+        android:text="AverageCal" />
+
+    <Button
+        android:id="@+id/Calminimum"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/average_calories"
+        android:text="Minimum" />
+
+
+    <Button
+        android:id="@+id/Calmaximum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/Calminimum"
+        android:text="Maximum" />
+
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:text="Delete This Message" />
+
+</RelativeLayout>
+

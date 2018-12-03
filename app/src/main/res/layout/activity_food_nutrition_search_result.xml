@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FoodNutrition.FoodNutritionSearchResult">
+
+    <TextView
+        android:id="@+id/nutritionTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Search Result:"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="27dp" />
+
+    <TextView
+        android:id="@+id/nutritionTextView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="104dp"
+        android:text="Food Type:  "
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="70dp" />
+
+    <TextView
+        android:id="@+id/nutritionTextView4"
+        android:layout_width="73dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/nutritionTextView3"
+        android:layout_marginTop="155dp"
+        android:text="Calories:  "
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="114dp" />
+
+    <TextView
+        android:id="@+id/nutritionTextView5"
+        android:layout_width="81dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/nutritionTextView3"
+        android:layout_marginTop="208dp"
+        android:text="Fat:   "
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="155dp" />
+
+    <TextView
+        android:id="@+id/nutritionTextView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/nutritionTextView3"
+        android:layout_marginEnd="120dp"
+        android:text=" "
+        tools:layout_editor_absoluteX="134dp"
+        tools:layout_editor_absoluteY="70dp" />
+
+    <TextView
+        android:id="@+id/nutritionTextView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/nutritionTextView6"
+        android:layout_alignTop="@+id/nutritionTextView4"
+        android:text=" "
+        tools:layout_editor_absoluteX="134dp"
+        tools:layout_editor_absoluteY="114dp" />
+
+    <TextView
+        android:id="@+id/nutritionTextView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/nutritionTextView6"
+        android:layout_marginTop="201dp"
+        android:text=" "
+        tools:layout_editor_absoluteX="134dp"
+        tools:layout_editor_absoluteY="155dp" />
+
+    <ImageView
+        android:id="@+id/nutritionImageView"
+        android:layout_width="394dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="169dp"
+        android:layout_weight="0"
+        android:gravity="end"
+        android:src="@drawable/food1" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:text="Save"
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="513dp" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/colorPrimary"
+        android:text="Cancel"
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="513dp" />
+
+    <Button
+        android:id="@+id/viewFavorites"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"
+        android:text="View Favorites"
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="513dp"/>
+
+
+</RelativeLayout>
