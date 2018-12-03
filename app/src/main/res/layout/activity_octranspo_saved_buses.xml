@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="No saved bus found"
+        android:text="@string/noBuses"
         tools:layout_editor_absoluteX="130dp"
         tools:layout_editor_absoluteY="274dp" />
 

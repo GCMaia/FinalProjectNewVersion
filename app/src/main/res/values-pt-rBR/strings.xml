@@ -24,7 +24,8 @@
         Este applicativo mostra todas as notícias recentes da CBC News. Você pode salvar as notícias e vê-las na tela de salvas
     </string>
     <string name="noBuses">Nenhum ônibus encontrado </string>
-    <string name="hasBuses">"    "</string>
+    <string name="hasBuses">%1s - %2s</string>
+    <string name="OCTranspoSavedBusList">salvo na sua lista de onibus</string>
     <string name="ocQuery">query completada</string>
     <string name="questionCBC">"Aceito, você será tranferido para a página principal da CBCNews "</string>
     <string name="CBCTitle">Ir para a página principal da CBCNews?</string>
@@ -41,9 +42,8 @@
     <string name="OCTranspoHelpGuide">-Para procurar por um ponto de ônibus, digite o número do ponto de ônibus e pressione busca</string>
     <string name="OCTranspoBusStopAndName">nome</string>
     <string name="OCTranspoSaveString">Pressione o botão para salvar a rota</string>
-
-    <string name="OCTranspoStartTime">Hora da partida</string>
-    <string name="OCTranspoDelayedTime">atrasado</string>
+    <string name="OCTranspoStartTime">Hora da partida %1s</string>
+    <string name="OCTranspoDelayedTime">atrasado %1s min(s)</string>
     <string name="OCTranspoBusHeading">Informação da rota</string>
     <string name="OCTranspoBusNo">Número do Ônibus</string>
     <string name="OCTranspoLatitudeString">Latitude</string>
@@ -63,5 +63,6 @@
     <string name="OCTranspoLongitude">W %1s</string>
     <string name="cbc_news_item_menu_about">Sobre</string>
     <string name="cbc_news_main_about_toast">Versão 1.0 por Natalia Nunes</string>
+    <string name="remove">remover</string>
 
 </resources>

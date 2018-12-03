@@ -2,10 +2,7 @@ package com.example.gabri.finalprojectnewversion.OCTranspo;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,22 +15,15 @@ import android.widget.Toast;
 
 import com.example.gabri.finalprojectnewversion.R;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
+/**
+ * Class used to create the fragment that is used after selecting a bus
+ */
 public class OCTranspoFragment extends android.app.Fragment {
-    private Button saveButton;
     private Bundle runningBundle;
     private Context parent;
-
-
-
     private String nameFinalStation;
     private String busStopNumber;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +32,13 @@ public class OCTranspoFragment extends android.app.Fragment {
 
     }
 
+    /**
+     *  method used to create the view that's is going to be used on the fragment
+     * @param inflater layout that's is going to be inflated
+     * @param container
+     * @param savedInstanceState
+     * @return view being used
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,10 +48,7 @@ public class OCTranspoFragment extends android.app.Fragment {
         final String origin;
 
 
-        saveButton = result.findViewById(R.id.OCTranspoSaveButton);
-
-
-
+        Button saveButton = result.findViewById(R.id.OCTranspoSaveButton);
 
         nameFinalStation = runningBundle.getString("busDestination");
         routeNumber = runningBundle.getString("busRouteNo");
@@ -84,7 +78,7 @@ public class OCTranspoFragment extends android.app.Fragment {
                 contentValues.put(OCTranspoDatabase.KEY_BUS_STOP, busStopNumber);
                 db.insert(OCTranspoDatabase.TABLE_NAME, null, contentValues);
                 db.close();
-                Toast toast = Toast.makeText(parent, "saved on your bus list", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(parent, R.string.OCTranspoSavedBusList, Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
@@ -93,6 +87,10 @@ public class OCTranspoFragment extends android.app.Fragment {
 
     }
 
+    /**
+     * attaches the activity context
+     * @param context activity context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

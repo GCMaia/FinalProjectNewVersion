@@ -11,6 +11,9 @@ import com.example.gabri.finalprojectnewversion.FoodNutrition.FoodNutritionMain;
 import com.example.gabri.finalprojectnewversion.Movie.MovieInformationMain;
 import com.example.gabri.finalprojectnewversion.OCTranspo.OCTranspoMain;
 
+/**
+ *  Project Main Class, initial point for the whole application, it shows all the 4 buttons that connects with the other activities
+ */
 public class MainActivity extends Activity {
 
   @Override

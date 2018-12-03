@@ -1,6 +1,5 @@
 package com.example.gabri.finalprojectnewversion.OCTranspo;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -8,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +23,9 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
+/**
+ * class used to show the user all the buses saved while using the application
+ */
 public class OCTranspoSavedBuses extends AppCompatActivity {
 
     ListViewSavedBusesClassesAdapter messageAdapter;
@@ -34,6 +35,11 @@ public class OCTranspoSavedBuses extends AppCompatActivity {
     ArrayList<Integer> busesIDs;
     ArrayList<String> busesStopNumber;
     ListView listview;
+
+    /**
+     * method used to start the activity, and call the getSavedBuses method and initialize the class arrays
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,11 +55,14 @@ public class OCTranspoSavedBuses extends AppCompatActivity {
 
     }
 
+    /**
+     * method used to get all the buses that need to be shown at the saved screen
+     */
     private void getSavedBuses(){
         Cursor cursor = database.getAllSavedBusesTest();
 
         if (cursor.getCount() == 0){
-            Toast toast = Toast.makeText(this, "no buses saved", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, R.string.noBuses, Toast.LENGTH_SHORT);
             toast.show();
         } else {
             while (cursor.moveToNext()){
@@ -67,12 +76,12 @@ public class OCTranspoSavedBuses extends AppCompatActivity {
             listview.setAdapter(messageAdapter);
             messageAdapter.notifyDataSetChanged();
 
-
-
-
         }
     }
 
+    /**
+     * inner class used to adapat the information from the arrays to the listview being used in this activity
+     */
     class ListViewSavedBusesClassesAdapter extends ArrayAdapter<String> {
 
         ListViewSavedBusesClassesAdapter(Context context) {
@@ -100,7 +109,6 @@ public class OCTranspoSavedBuses extends AppCompatActivity {
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(), "bus removed", Toast.LENGTH_SHORT).show();
 
                     OCTranspoDatabase helperDatabase = new OCTranspoDatabase(getContext());
                     SQLiteDatabase db = helperDatabase.getWritableDatabase();
@@ -111,7 +119,7 @@ public class OCTranspoSavedBuses extends AppCompatActivity {
                     busesNumber.remove(position);
 
                     if (busesNumber.size() == 0){
-                        hasBus.setText("no saved bus found");
+                        hasBus.setText(R.string.noBuses);
                     }
 
                     messageAdapter.notifyDataSetChanged();
@@ -138,14 +146,28 @@ public class OCTranspoSavedBuses extends AppCompatActivity {
         }
 
 
+        /**
+         * gets the count of the arraylist "busesName"
+         * @return the size
+         */
         public int getCount() {
             return busesName.size();
         }
 
+        /**
+         * gets the specific item on the busesName array
+         * @param position where the item/element is
+         * @return the item/element
+         */
         String getSavedBusHeading(int position) {
             return busesName.get(position);
         }
 
+        /**
+         * gets the specific item on the busesNumber array
+         * @param position where the item/element is
+         * @return the item/element
+         */
         String getSavedBusNo(int position){
             return busesNumber.get(position);
         }

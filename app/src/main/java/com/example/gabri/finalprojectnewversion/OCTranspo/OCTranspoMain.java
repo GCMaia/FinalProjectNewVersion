@@ -6,14 +6,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -266,6 +264,11 @@ public class OCTranspoMain extends AppCompatActivity {
     }
 
 
+    /**
+     *  method used to invoke the toolbar being used at the main activity
+     * @param menu menu going to be used
+     * @return the toolbar
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_octranspo_appbar,menu);
@@ -273,6 +276,11 @@ public class OCTranspoMain extends AppCompatActivity {
     }
 
 
+    /**
+     * method used to invoke the menu options being used at the toolbar
+     * @param menuItem toolbar element
+     * @return the toolbar items
+     */
     public boolean onOptionsItemSelected(MenuItem menuItem){
 
         switch (menuItem.getItemId()){

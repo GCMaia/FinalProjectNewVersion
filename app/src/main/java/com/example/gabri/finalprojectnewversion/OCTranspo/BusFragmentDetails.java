@@ -4,11 +4,8 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.gabri.finalprojectnewversion.R;
@@ -30,6 +27,9 @@ public class BusFragmentDetails extends AppCompatActivity {
     String tempStart;
     String tempLate;
 
+    /**
+     * starts the query and saves the information that needs to be passed for the next screen
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -62,19 +62,24 @@ public class BusFragmentDetails extends AppCompatActivity {
         ft.commit();
     }
 
+    /**
+     * inner class used to make the query on the 2nd part of the API, for the specific bus
+     */
     class BusDetailQuery extends AsyncTask<String, Integer, String> {
 
         final String OCKEY = "0fe84df9e187b080fa03ca6114c05047";
         final String APPID = "6ded7c88";
 
-
-
+        /**
+         * method used for making the research for the specific requested bus
+         */
         @Override
         protected String doInBackground(String... strings) {
 
             String web = "https://api.octranspo1.com/v1.2/GetNextTripsForStop?appID=" + APPID +
                     "&&apiKey="+ OCKEY + "&routeNo=" + routeNumber + "&stopNo=" + stopNumber;
 
+            //https://api.octranspo1.com/v1.2/GetNextTripsForStop?appID=6ded7c88&&apiKey=0fe84df9e187b080fa03ca6114c05047&routeNo=111&stopNo=3017
             try {
                 URL url = new URL(web);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -123,6 +128,9 @@ public class BusFragmentDetails extends AppCompatActivity {
             return null;
         }
 
+        /**
+         * method called after the end of the Async task, responsible for showing the bus information in the screen
+         */
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
