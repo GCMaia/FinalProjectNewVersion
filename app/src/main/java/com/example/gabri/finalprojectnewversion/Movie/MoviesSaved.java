@@ -44,6 +44,11 @@ public class MoviesSaved extends AppCompatActivity {
         movieDatabase=new MovieDatabase(this);
         ID=new ArrayList<>();
         titles=new ArrayList<>();
+        year=new ArrayList<>();
+        runtime=new ArrayList<>();
+        rated=new ArrayList<>();
+        plot=new ArrayList<>();
+        actors=new ArrayList<>();
         savedMovieAdapter=new SavedMovieAdapter(this);
         getSavedMovies();
     }
