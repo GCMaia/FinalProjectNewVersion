@@ -342,7 +342,7 @@ public class OCTranspoMain extends AppCompatActivity {
             case R.id.action_six:
 
                 AlertDialog.Builder savedBuilder = new AlertDialog.Builder(OCTranspoMain.this);
-                savedBuilder.setMessage("accept will take you to your saved buses page")
+                savedBuilder.setMessage(R.string.OCTranspoSavedBusMovePage)
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent intent = new Intent(OCTranspoMain.this, OCTranspoSavedBuses.class);

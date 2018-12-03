@@ -136,7 +136,7 @@ public class MovieInformationMain extends AppCompatActivity {
 
             public void onClick(View v) {
                 if (editText.getText().toString().equals("")){
-                    Toast.makeText(MovieInformationMain.this, "Cannot Find That Movie", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MovieInformationMain.this, R.string.movieInfoToast, Toast.LENGTH_LONG).show();
                 }else {
                     progressBarMovie.setVisibility(View.VISIBLE);
                     title=editText.getText().toString();
@@ -149,7 +149,7 @@ public class MovieInformationMain extends AppCompatActivity {
                     movieAdapter.notifyDataSetChanged();
 
                     editText.setText("");
-                    Snackbar.make(search, "All Movies Searched", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(search, R.string.movieSearchedSnackBar, Snackbar.LENGTH_LONG).show();
 
                     movieList.clear();
                     posterList.clear();
@@ -343,7 +343,7 @@ public class MovieInformationMain extends AppCompatActivity {
         AlertDialog dialog;
         switch (id){
             case R.id.action_one:
-                builder.setTitle("Do you want to see your saved Movies?");
+                builder.setTitle(R.string.questionSavedMovies);
                 builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -360,7 +360,7 @@ public class MovieInformationMain extends AppCompatActivity {
                 dialog.show();
                 break;
             case R.id.action_two:
-                builder.setTitle("Do you want to go to CBC News?");
+                builder.setTitle(R.string.questionCBC);
                 builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -377,7 +377,7 @@ public class MovieInformationMain extends AppCompatActivity {
                 dialog.show();
                 break;
             case R.id.action_three:
-                builder.setTitle("Do you want to go to OC Transpo?");
+                builder.setTitle(R.string.questionOCTranspo);
                 builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -394,7 +394,7 @@ public class MovieInformationMain extends AppCompatActivity {
                 dialog.show();
                 break;
             case R.id.action_four:
-                builder.setTitle("Do you want to go to Food Nutrition?");
+                builder.setTitle(R.string.questionNutrition);
                 builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -411,10 +411,10 @@ public class MovieInformationMain extends AppCompatActivity {
                 dialog.show();
                 break;
             case R.id.action_five:
-                Toast.makeText(MovieInformationMain.this,"Movie Information Version 1.0 by Mary Anne Bernardino",Toast.LENGTH_LONG).show();
+                Toast.makeText(MovieInformationMain.this,R.string.aboutMovieInformation ,Toast.LENGTH_LONG).show();
                 break;
             case R.id.action_six:
-                builder.setTitle("Movie Information Help").setMessage("To begin looking for a movie, type the name of the movie into the textbox and click the search button").show();
+                builder.setTitle(R.string.helpTitleMovieInformation).setMessage(R.string.helpMovieInformation).show();
 
         }
         return true;

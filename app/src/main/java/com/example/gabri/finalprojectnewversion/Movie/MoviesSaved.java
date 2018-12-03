@@ -116,7 +116,7 @@ public class MoviesSaved extends AppCompatActivity {
             remove.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(),"Movie Removed",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),R.string.toastRemovedMovie ,Toast.LENGTH_LONG).show();
                     MovieDatabase movieDatabase=new MovieDatabase(getContext());
                     SQLiteDatabase database=movieDatabase.getWritableDatabase();
                     database.delete(MovieDatabase.TABLE_NAME,MovieDatabase.KEY_TITLE+"=?",new String[]{titles.get(position)});

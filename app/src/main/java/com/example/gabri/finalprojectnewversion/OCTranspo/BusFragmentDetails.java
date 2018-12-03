@@ -16,15 +16,27 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
+/**
+ * Class used for getting bus specific information to be presented on the fragment class
+ */
 public class BusFragmentDetails extends AppCompatActivity {
+
+
 
     String routeNumber;
     String stopNumber;
+
+    ArrayList<String> tempSpeedArray = new ArrayList<>();
     String tempSpeed;
+    ArrayList<String> tempLatitudeArray = new ArrayList<>();
     String tempLatitude;
+    ArrayList<String> tempLongitudeArray = new ArrayList<>();
     String tempLongitude;
+    ArrayList<String> tempStartArray = new ArrayList<>();
     String tempStart;
+    ArrayList<String> tempLateArray = new ArrayList<>();
     String tempLate;
 
     /**
@@ -43,9 +55,6 @@ public class BusFragmentDetails extends AppCompatActivity {
 
         routeNumber = i.getStringExtra("busRouteNo");
         stopNumber = i.getStringExtra("stopNumber");
-
-
-
 
         OCTranspoFragment mf = new OCTranspoFragment();
         Bundle fragmentArgs = new Bundle();
@@ -95,28 +104,23 @@ public class BusFragmentDetails extends AppCompatActivity {
                     if (xpp.getEventType() == XmlPullParser.START_TAG) {
                         if (xpp.getName().equals("GPSSpeed")) {
                             xpp.next();
-                            tempSpeed = xpp.getText();
+                            tempSpeedArray.add(xpp.getText());
                         }
                         else if (xpp.getName().equals("TripStartTime")){
                             xpp.next();
-                            tempStart = xpp.getText();
+                            tempStartArray.add(xpp.getText());
                         }
                         else if (xpp.getName().equals("AdjustedScheduleTime")){
                             xpp.next();
-                            tempLate = xpp.getText();
+                            tempLateArray.add(xpp.getText());
                         }
                         else if (xpp.getName().equals("Latitude")){
                             xpp.next();
-                            tempLatitude = xpp.getText();
+                            tempLatitudeArray.add(xpp.getText());
                         }
                         else if (xpp.getName().equals("Longitude")){
                             xpp.next();
-                            tempLongitude = xpp.getText();
-                        }
-                    }
-                    else if (xpp.getEventType() == XmlPullParser.END_TAG){
-                        if (xpp.getName().equals("Trip")){
-                            break;
+                            tempLongitudeArray.add(xpp.getText());
                         }
                     }
                     xpp.next();
@@ -135,19 +139,24 @@ public class BusFragmentDetails extends AppCompatActivity {
             super.onPostExecute(s);
 
             TextView speedView = findViewById(R.id.OCTRanspoSpeed);
-            speedView.setText(String.format(getResources().getString(R.string.OCTranspoSpeed), tempSpeed));
+            speedView.setText(String.format(getResources().getString(R.string.OCTranspoSpeed), tempSpeedArray.get(0)));
 
             TextView latitudeView = findViewById(R.id.OCTranspoLatitude);
-            latitudeView.setText(String.format(getResources().getString(R.string.OCTranspoLatitude), tempLatitude));
+            latitudeView.setText(String.format(getResources().getString(R.string.OCTranspoLatitude), tempLatitudeArray.get(0)));
 
             TextView longitudeView = findViewById(R.id.OCTranspoLongitude);
-            longitudeView.setText(String.format(getResources().getString(R.string.OCTranspoLongitude), tempLongitude));
+            longitudeView.setText(String.format(getResources().getString(R.string.OCTranspoLongitude), tempLongitudeArray.get(0)));
 
             TextView startView = findViewById(R.id.OCTranspoStartTime);
-            startView.setText(String.format(getResources().getString(R.string.OCTranspoStartTime), tempStart));
+            startView.setText(String.format(getResources().getString(R.string.OCTranspoStartTime), tempStartArray.get(0)));
 
             TextView lateView = findViewById(R.id.OCTranspoLateTime);
-            lateView.setText(String.format(getResources().getString(R.string.OCTranspoDelayedTime), tempLate));
+            lateView.setText(String.format(getResources().getString(R.string.OCTranspoDelayedTime), tempLateArray.get(0)));
+
+            TextView averageDelayedTime = findViewById(R.id.averageDelayedTime);
+            int sum = Integer.parseInt(tempLateArray.get(0)) + Integer.parseInt(tempLateArray.get(1)) + Integer.parseInt(tempLateArray.get(2));
+            int result = sum/3;
+            averageDelayedTime.setText(String.format(getResources().getString(R.string.averagedelayedtime), Integer.toString(result)));
 
         }
     }

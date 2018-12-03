@@ -38,6 +38,9 @@
     <string name="yes">sim</string>
     <string name="no">não</string>
     <string name="OCTranspoAbout">Versão 1.0 por Gabriel Maia</string>
+    <string name="item_menu_about">Sobre</string>
+    <string name="item_menu_help">Ajuda</string>
+    <string name="OCTranspoSavedBusMovePage">aceitar te levara para a pagina de onibus salvos</string>
     <string name="OCTranspoHelp">Guia OCTranspo</string>
     <string name="OCTranspoHelpGuide">-Para procurar por um ponto de ônibus, digite o número do ponto de ônibus e pressione busca</string>
     <string name="OCTranspoBusStopAndName">nome</string>
@@ -52,6 +55,7 @@
     <string name="OCTranspoSpeedString">Velocidade</string>
     <string name="OCTranspoStartString">Hora de partida</string>
     <string name="OCTranspoDelayedString">Tempo de atraso</string>
+    <string name="XMLsearchMovie">Pesquisar por filme"</string>
     <string name="titleMovie">Título: %1s</string>
     <string name="year">Data de lançamento: %1s</string>
     <string name="Rated">Pontuação: %1s</string>
@@ -62,7 +66,18 @@
     <string name="OCTranspoLatitude">N %1s</string>
     <string name="OCTranspoLongitude">W %1s</string>
     <string name="cbc_news_item_menu_about">Sobre</string>
+    <string name="XMLsaveThisMovie">Salve este filme</string>
+    <string name="XMLInputTitle">Por favor escreva um filme</string>
     <string name="cbc_news_main_about_toast">Versão 1.0 por Natalia Nunes</string>
     <string name="remove">remover</string>
+    <string name="averagedelayedtime">o tempo de atraso medio para essa linha e: %1s min(s)</string>
+    <string name="movieInfoToast">Filme nao foi encontrado</string>
+    <string name="movieSearchedSnackBar">Todos filmes pesquisados</string>
+    <string name="questionSavedMovies">Voce quer ver seus filmes salvos?</string>
+    <string name="aboutMovieInformation">Informacao Filmes versao 1.0 por Mary Anne Bernardino</string>
+    <string name="helpTitleMovieInformation">Filme informacao Ajuda</string>
+    <string name="helpMovieInformation">Para comecar a procurar por um filme, escreva o nome fo filme na caixa de texto e aperte em pesquisar</string>
+    <string name="toastRemovedMovie">Filme removido</string>
+
 
 </resources>

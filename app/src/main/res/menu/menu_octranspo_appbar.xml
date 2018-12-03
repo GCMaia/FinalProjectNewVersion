@@ -22,12 +22,12 @@
         app:showAsAction="always" />
 
     <item android:id="@+id/action_four"
-        android:title="About"
+        android:title="@string/item_menu_about"
         android:orderInCategory="4"
         app:showAsAction="never"/>
 
     <item android:id="@+id/action_five"
-        android:title="Help"
+        android:title="@string/item_menu_help"
         android:orderInCategory="5"
         app:showAsAction="ifRoom"/>
 

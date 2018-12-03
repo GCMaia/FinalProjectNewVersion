@@ -27,11 +27,19 @@
     <string name="ocQuery">query completed</string>
     <string name="questionCBC">accept will take you to CBCNews main page</string>
     <string name="CBCTitle">go to CBCNews main page?</string>
-    <string name="questionMovies">accept will take you to Movies main pag</string>
+    <string name="questionMovies">accept will take you to Movies main page</string>
+    <string name="questionSavedMovies">Do you want to see  saved Movies?</string>
     <string name="MoviesTitle">go to Movies main page?</string>
-    <string name="questionOCTranspo">accept will take you to OCTranspo main pag</string>
+    <string name="aboutMovieInformation">Movie Information Version 1.0 by Mary Anne Bernardino</string>
+    <string name="helpTitleMovieInformation">Movie Information Help</string>
+    <string name="helpMovieInformation">To begin looking for a movie, type the name of the movie into the textbox and click the search button</string>
+    <string name="toastRemovedMovie">Filme removed</string>
+    <string name="XMLsaveThisMovie">Save This Movie</string>
+    <string name="XMLsearchMovie">Search for Movie"</string>
+    <string name="XMLInputTitle">Please enter a movie title</string>
+    <string name="questionOCTranspo">accept will take you to OCTranspo main page</string>
     <string name="OCTranspoTitle">go to OCTranspo main page?</string>
-    <string name="questionNutrition">accept will take you to Nutrition main pag</string>
+    <string name="questionNutrition">accept will take you to Nutrition main page</string>
     <string name="NutritionTitle">go to Nutrition main page?</string>
     <string name="yes">yes</string>
     <string name="no">no</string>
@@ -40,6 +48,7 @@
     <string name="OCTranspoHelpGuide">- To look for a bus stop, simply type the bus stop and press to search \n"
                         "\n - To save a bus, select the bus you desire, and click on the save option</string>
     <string name="OCTranspoBusStopAndName">stop number and "name"</string>
+    <string name="OCTranspoSavedBusMovePage">accept will take you to your saved buses page</string>
     <string name="OCTranspoSavedBusList">saved on your bus list </string>
     <string name="OCTranspoSpeed">%1s km/h</string>
     <string name="OCTranspoLatitude">N %1s</string>
@@ -62,6 +71,12 @@
     <string name="Actors">Actors: %1s</string>
     <string name="Plot">Plot: %1s</string>
     <string name="cbc_news_item_menu_about">About</string>
+    <string name="item_menu_about">About</string>
+    <string name="item_menu_help">Help</string>
     <string name="cbc_news_main_about_toast">Version 1.0 by Natalia Nunes</string>
     <string name="remove">remove</string>
+    <string name="averagedelayedtime">the average delayed time for this line is: %1s min(s)</string>
+    <string name="movieInfoToast">Cannot Find That Movie</string>
+    <string name="movieSearchedSnackBar">All Movies Searched</string>
+
 </resources>

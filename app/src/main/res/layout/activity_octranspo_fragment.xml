@@ -70,4 +70,13 @@
       android:layout_alignParentBottom="true"
       android:text="@string/OCTranspoSaveString" />
 
+  <TextView
+      android:id="@+id/averageDelayedTime"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_centerHorizontal="true"
+      android:layout_marginBottom="149dp"
+      android:text="@string/averagedelayedtime" />
+
 </RelativeLayout>
