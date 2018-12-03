@@ -62,8 +62,8 @@ public class MovieInformationMain extends AppCompatActivity {
      * class variables
      */
     protected static final String ACTIVITY_NAME = "MovieInfoActivity";
-    final ArrayList<String> movieList =new ArrayList<>();
-    final ArrayList<Bitmap> posterList=new ArrayList<>();
+    final ArrayList<String> movieList =new ArrayList<>(0);
+    final ArrayList<Bitmap> posterList=new ArrayList<>(0);
 
     ProgressBar progressBarMovie;
 
@@ -152,6 +152,7 @@ public class MovieInformationMain extends AppCompatActivity {
                     Snackbar.make(search, "All Movies Searched", Snackbar.LENGTH_LONG).show();
 
                     movieList.clear();
+                    posterList.clear();
                 }
 
 
@@ -288,12 +289,9 @@ public class MovieInformationMain extends AppCompatActivity {
 //                            outputStream.close();
 
                         }
-                    }else if (title!=null && poster!=null){
+                    }else if (title!=null){
                         movieList.add(titleTemp);
                         posterList.add(picture);
-                    }
-                    else{
-                        movieList.add(titleTemp);
                     }
                     xpp.next();
                 }
