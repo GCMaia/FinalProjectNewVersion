@@ -39,6 +39,7 @@ public class MoviesSaved extends AppCompatActivity {
     ArrayList<String> rated;
     ArrayList<String> plot;
     ArrayList<String> actors;
+    ArrayList<String> poster;
     SavedMovieAdapter savedMovieAdapter;
     ListView listView;
 
@@ -59,6 +60,7 @@ public class MoviesSaved extends AppCompatActivity {
         rated=new ArrayList<>();
         plot=new ArrayList<>();
         actors=new ArrayList<>();
+        poster=new ArrayList<>();
         savedMovieAdapter=new SavedMovieAdapter(this);
         getSavedMovies();
     }
@@ -76,11 +78,11 @@ public class MoviesSaved extends AppCompatActivity {
                 runtime.add(cursor.getString(4));
                 actors.add(cursor.getString(5));
                 plot.add(cursor.getString(6));
+                poster.add(cursor.getString(7));
                 listView=findViewById(R.id.savedMovieList);
                 listView.setAdapter(savedMovieAdapter);
                 savedMovieAdapter.notifyDataSetChanged();
             }
-
     }
 
     /**
@@ -131,10 +133,11 @@ public class MoviesSaved extends AppCompatActivity {
                     Intent intent=new Intent(MoviesSaved.this,MovieDetail.class);
                     intent.putExtra("title",titles.get(position));
                     intent.putExtra("year", year.get(position));
-                    intent.putExtra("rated", rated.get(position));
+                    intent.putExtra("rating", rated.get(position));
                     intent.putExtra("runtime", runtime.get(position));
                     intent.putExtra("actors",actors.get(position));
                     intent.putExtra("plot", plot.get(position));
+                    intent.putExtra("poster",poster.get(position));
                     intent.putExtra("origin","save");
                     startActivity(intent);
                 }

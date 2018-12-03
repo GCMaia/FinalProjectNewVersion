@@ -5,16 +5,24 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 
 import com.example.gabri.finalprojectnewversion.R;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 /**
  *class passes information and allows fragment to be viewed
  */
 public class MovieDetail extends AppCompatActivity {
+    protected static final String ACTIVITY_NAME = "MovieDetail";
     /**
      * class variables
      */
@@ -31,8 +39,7 @@ public class MovieDetail extends AppCompatActivity {
         setContentView(R.layout.activity_movie_detail);
 
         Intent intent=getIntent();
-
-        //poster=intent.getStringExtra("poster");
+        poster=intent.getStringExtra("poster");
         title=intent.getStringExtra("title");
         year=intent.getStringExtra("year");
         rating=intent.getStringExtra("rating");
@@ -43,13 +50,14 @@ public class MovieDetail extends AppCompatActivity {
         MovieFragment movieFragment=new MovieFragment();
         Bundle bundle=new Bundle();
 
-        //bundle.putString("poster",poster);
+        bundle.putString("poster",poster);
         bundle.putString("title",title);
         bundle.putString("year",year);
         bundle.putString("rating", rating);
         bundle.putString("runtime", runtime);
         bundle.putString("actors",actors);
         bundle.putString("plot",plot);
+        bundle.putString("poster",poster);
         bundle.putString("origin","origin");
 
         movieFragment.setArguments(bundle);
@@ -59,4 +67,5 @@ public class MovieDetail extends AppCompatActivity {
         fragmentTransaction.replace(R.id.empty_movie_frame, movieFragment);
         fragmentTransaction.commit();
     }
+
 }

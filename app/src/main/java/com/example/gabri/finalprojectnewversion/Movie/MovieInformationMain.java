@@ -8,12 +8,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,6 +41,9 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.File;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 
 import java.net.HttpURLConnection;
@@ -64,6 +69,7 @@ public class MovieInformationMain extends AppCompatActivity {
     MovieAdapter movieAdapter;
     EditText editText;
     ListView listView;
+    SharedPreferences pref;
     String title="";
     String year="";
     String rating="";
@@ -72,7 +78,9 @@ public class MovieInformationMain extends AppCompatActivity {
     String plot="";
     String poster="" ;
     Bitmap picture;
+
     String posterName;
+
 
     /**
      * onCreate method initializes various class variables, toolbar, progress bar, and onclick listeners for list item and search button
@@ -91,7 +99,13 @@ public class MovieInformationMain extends AppCompatActivity {
         progressBarMovie=findViewById(R.id.progress);
         progressBarMovie.setVisibility(View.INVISIBLE);
         editText=findViewById(R.id.enterMovie);
-
+        pref=getSharedPreferences("prevMovie",Context.MODE_PRIVATE);
+        String prevMovie=pref.getString("prevTitle","empty");
+//        if (prevMovie!="empty"){
+//            title=prevMovie;
+//            MovieQuery movieQuery=new MovieQuery();
+//            movieQuery.execute();
+//        }
         Toolbar movieToolBar=findViewById(R.id.movie_toolbar);
         setSupportActionBar(movieToolBar);
 
@@ -100,7 +114,7 @@ public class MovieInformationMain extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent=new Intent(MovieInformationMain.this, MovieDetail.class);
                 intent.putExtra("id",id);
-                //intent.putExtra("poster",poster);
+                intent.putExtra("poster",posterName);
                 intent.putExtra("title",movieList.get(position));
                 intent.putExtra("year",year);
                 intent.putExtra("rating",rating);
@@ -121,6 +135,10 @@ public class MovieInformationMain extends AppCompatActivity {
                 }else {
                     progressBarMovie.setVisibility(View.VISIBLE);
                     title=editText.getText().toString();
+//                    SharedPreferences.Editor prefEdit=pref.edit();
+//                    prefEdit.putString("prevTitle",title);
+//                    prefEdit.apply();
+
                     MovieQuery movieQuery = new MovieQuery();
                     movieQuery.execute();
                     movieAdapter.notifyDataSetChanged();
@@ -232,30 +250,30 @@ public class MovieInformationMain extends AppCompatActivity {
                             poster = xpp.getAttributeValue(null, "poster");
 
                             URL urlPic=new URL(poster);
-                            String posterName=titleTemp+".JPEG";
+                            posterName=titleTemp+".JPEG";
 
-//                            if (fileExistance(posterName)) {
-//                                FileInputStream fis = null;
-//                                try {
-//                                    fis = openFileInput(posterName);
-//                                } catch (FileNotFoundException e) {
-//                                    e.printStackTrace();
-//                                }
-//                                picture = BitmapFactory.decodeStream(fis);
-//                                Log.i(ACTIVITY_NAME, "Image Found Locally");
-//                            }
-//                            else {
-//                                Log.i(ACTIVITY_NAME, "Image Downloaded");
-//
-//                                picture  = HttpUtils.getImage(urlPic);
-//                                FileOutputStream outputStream = openFileOutput( posterName, Context.MODE_PRIVATE);
-//                                if (picture != null) {
-//                                    picture.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
-//                                }
-//                                outputStream.flush();
-//                                outputStream.close();
-//                            }
-                            picture = HttpUtils.getImage(urlPic);
+                            if (fileExistance(posterName)) {
+                                FileInputStream fis = null;
+                                try {
+                                    fis = openFileInput(posterName);
+                                } catch (FileNotFoundException e) {
+                                    e.printStackTrace();
+                                }
+                                picture = BitmapFactory.decodeStream(fis);
+                                Log.i(ACTIVITY_NAME, "Image Found Locally");
+                            }
+                            else {
+                                Log.i(ACTIVITY_NAME, "Image Downloaded");
+
+                                picture  = HttpUtils.getImage(urlPic);
+                                FileOutputStream outputStream = openFileOutput( posterName, Context.MODE_PRIVATE);
+                                if (picture != null) {
+                                    picture.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
+                                }
+                                outputStream.flush();
+                                outputStream.close();
+                            }
+//                            picture = HttpUtils.getImage(urlPic);
 //                            FileOutputStream outputStream = openFileOutput( title+".JPEG", Context.MODE_PRIVATE);
 //                            picture.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
 //                            outputStream.flush();
