@@ -199,13 +199,13 @@ public class CBCNewsListFragment extends Fragment {
      */
     private class DownloadNewsAsyncTask extends AsyncTask<String, Integer, String> {
         /**
-         * website URL
-         */
-        private final String API_URL = "https://www.cbc.ca/cmlink/rss-world";
-        /**
          * news list
          */
         private ArrayList<News> newsList = new ArrayList<>();
+        /**
+         * website URL
+         */
+        private final String API_URL = "https://www.cbc.ca/cmlink/rss-world";
 
         /**
          * loads news from CBC website
