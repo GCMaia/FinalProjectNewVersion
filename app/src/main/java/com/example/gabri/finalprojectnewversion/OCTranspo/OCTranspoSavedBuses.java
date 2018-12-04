@@ -25,9 +25,14 @@ import java.util.ArrayList;
 
 /**
  * class used to show the user all the buses saved while using the application
+ * @author Gabriel Cardoso Maia
+ * @since November, 08/2018
  */
 public class OCTranspoSavedBuses extends AppCompatActivity {
 
+    /**
+     * attributes declaration for holding the information that comes from the database
+     */
     ListViewSavedBusesClassesAdapter messageAdapter;
     OCTranspoDatabase database;
     ArrayList<String> busesName;

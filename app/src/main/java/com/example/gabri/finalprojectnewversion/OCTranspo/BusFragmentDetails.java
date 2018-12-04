@@ -20,24 +20,25 @@ import java.util.ArrayList;
 
 /**
  * Class used for getting bus specific information to be presented on the fragment class
+ * @author Gabriel Cardoso Maia
+ * @since November, 08/2018
  */
 public class BusFragmentDetails extends AppCompatActivity {
 
-
-
+    /**
+     * Strings used to store the information that comes from the previous class
+     */
     String routeNumber;
     String stopNumber;
 
+    /**
+     * arrays to store the buses specific information that is going to be shown on the screen
+     */
     ArrayList<String> tempSpeedArray = new ArrayList<>();
-    String tempSpeed;
     ArrayList<String> tempLatitudeArray = new ArrayList<>();
-    String tempLatitude;
     ArrayList<String> tempLongitudeArray = new ArrayList<>();
-    String tempLongitude;
     ArrayList<String> tempStartArray = new ArrayList<>();
-    String tempStart;
     ArrayList<String> tempLateArray = new ArrayList<>();
-    String tempLate;
 
     /**
      * starts the query and saves the information that needs to be passed for the next screen

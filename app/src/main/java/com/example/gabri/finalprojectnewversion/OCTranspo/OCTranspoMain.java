@@ -48,11 +48,17 @@ import java.util.ArrayList;
 public class OCTranspoMain extends AppCompatActivity {
 
 
+    /**
+     * Arrays to store the bus information according to the query being done by the AsyncTask
+     */
     final ArrayList<String> busInfoHeader = new ArrayList<>();
     final ArrayList<String> busInfoNo = new ArrayList<>();
 
     ListViewClassesAdapter messageAdapter;
 
+    /**
+     * XML elements declaration and "temporary" Strings
+     */
     Button searchButton;
     EditText editText;
     String stopNumber = "";
@@ -171,6 +177,13 @@ public class OCTranspoMain extends AppCompatActivity {
             return busInfoHeader.get(position);
         }
 
+        /**
+         * method for setting the information displayed on the view
+         * @param position element position
+         * @param convertView
+         * @param parent
+         * @return the view on the screen
+         */
         @NonNull
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = OCTranspoMain.this.getLayoutInflater();

@@ -17,6 +17,8 @@ import com.example.gabri.finalprojectnewversion.R;
 
 /**
  * Class used to create the fragment that is used after selecting a bus
+ * @author Gabriel Cardoso Maia
+ * @since November, 08/2018
  */
 public class OCTranspoFragment extends android.app.Fragment {
     private Bundle runningBundle;

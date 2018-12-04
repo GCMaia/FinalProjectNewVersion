@@ -7,9 +7,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * class used to create and access the application's database
+ * @author Gabriel Cardoso Maia
+ * @since November, 08/2018
  */
 class OCTranspoDatabase extends SQLiteOpenHelper {
 
+
+    /**
+     * Attributes for handling the database
+     */
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "OCTranspo.db";
     public static final String TABLE_NAME = "SavedBuses";
