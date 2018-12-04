@@ -62,7 +62,10 @@ public class FoodNutritionMain extends AppCompatActivity {
     Double cal = 0.0;
     Double fat = 0.0;
 
-
+/*
+this is onCreate method , it resopnsible to create the activity, and put initialization code,
+and use the super class method
+ */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,16 +86,6 @@ public class FoodNutritionMain extends AppCompatActivity {
         Toolbar foodToolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.nutritionToolbar);
         setSupportActionBar(foodToolbar);
         foodToolbar.setTitle("Food Nutrition");
-
-        SharedPreferences sharedPreferences = getSharedPreferences("lastFood", MODE_PRIVATE);
-
-
-        String tempNameOfFood = sharedPreferences.getString("food", "noFood");
-        if (tempNameOfFood!="noFood"){
-            nameOfFood = tempNameOfFood;
-            Nutrition nutrition = new Nutrition();
-            nutrition.execute();
-        }
 
         Button nutritionButton = findViewById(R.id.nutritionButton);
         nutritionButton.setOnClickListener(new View.OnClickListener() {
@@ -130,18 +123,24 @@ public class FoodNutritionMain extends AppCompatActivity {
 
 
     }
-
+/*
+this is asub class to provide the events that are handle the event listener inetrface
+ */
     public class FoodAdapter extends ArrayAdapter<String> {
 
         FoodAdapter(Context context) {
             super(context, 0);
         }
-
+/*
+the getcount method will get food name from user rearched
+ */
         public String getCountFoodName(int position) {
 
             return foodNameListview.get(position);
         }
-
+    /*
+    the getcount method will get calories from user rearched
+     */
         public String getCountFoodCalories(int position){
             return foodCaloriesListview.get(position);
         }

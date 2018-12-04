@@ -14,7 +14,10 @@ import com.example.gabri.finalprojectnewversion.R;
 
 public class FoodNutritionSearchResult extends AppCompatActivity {
     String foodNamePassed, calPassed, fatPassed;
-
+    /*
+    this is onCreate method , it resopnsible to create the activity, and put initialization code,
+    and use the super class method
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -64,23 +64,6 @@ public class FoodDatabaseHelp extends SQLiteOpenHelper {
         db.close();
     }
 
-    public List<String> getAllResults () {
-        final List<String> results = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
-        final Cursor cursor = db.query(FOODNUTRITIONRESULT_TABLE_NAME, COLUMN_ALL, null, null, null, null, null);
-        Log.i(TAG, "Coursor's column count: " + cursor.getColumnCount());
-
-        for (int i = 0; i < cursor.getColumnCount(); i++)
-            Log.i(TAG, " Cursor's Column: " + cursor.getColumnName(i));
-        while (cursor.moveToNext()) {
-            final String information = cursor.getString(cursor.getColumnIndex(Key_FOOD));
-            Log.i(TAG, "SQL result: " + Key_FOOD);
-            results.add(information);
-        }
-        cursor.close();
-        return results;
-    }
-
     public Cursor getAllSavedFoods(){
         final SQLiteDatabase database = this.getReadableDatabase();
         String query = "Select * from " + FOODNUTRITIONRESULT_TABLE_NAME;

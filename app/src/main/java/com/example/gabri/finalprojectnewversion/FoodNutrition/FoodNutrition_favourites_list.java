@@ -27,7 +27,9 @@ import java.util.ArrayList;
 import javax.xml.transform.Result;
 
 public class FoodNutrition_favourites_list extends AppCompatActivity {
-
+/*
+those are class veriable
+ */
     FoodDatabaseHelp myDB;
     private SQLiteDatabase foodDB;
     public  Button AverageCal;
@@ -37,25 +39,31 @@ public class FoodNutrition_favourites_list extends AppCompatActivity {
     private TextView nutritionInfo;
     private Cursor cursor;
     private ListView foodListView;
-
+/*
+create array to hold the food name and values
+ */
     ArrayList<String> arrayListFoodName = new ArrayList<>();
     ArrayList<Integer> arrayListId = new ArrayList<>();
     ArrayList<String> arrayListCal = new ArrayList<>();
     ArrayList<String> arrayListFat = new ArrayList<>();
-
     ListViewSavedFoods adapter;
-
+/*
+this is onCreate method , it resopnsible to create the activity, and put initialization code,
+and use the super class method
+ */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_nutrition_favourites_list);
 
-        AverageCal = findViewById(R.id.average_calories);
-        TotalCal = findViewById(R.id.total_calories);
-        MinimumCal = findViewById(R.id.Calminimum);
-        MaximumCal = findViewById(R.id.Calmaximum);
+        AverageCal = findViewById(R.id.average_calories); //to find the averageCal button
+        TotalCal = findViewById(R.id.total_calories);  // to find the totalCal button
+        MinimumCal = findViewById(R.id.Calminimum);   // to find the minimumCal button
+        MaximumCal = findViewById(R.id.Calmaximum);   // to find the maximumCal
         nutritionInfo = findViewById(R.id.nutrition_info);
-
+/*
+use on click method to  find TotalCal when user click and bring to the next page
+ */
         TotalCal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +73,9 @@ public class FoodNutrition_favourites_list extends AppCompatActivity {
                 nutritionInfo.setText(calT1);
             }
         });
-
+/*
+use on click method to  find AverageCal when user click and bring to the next page
+ */
         AverageCal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +84,9 @@ public class FoodNutrition_favourites_list extends AppCompatActivity {
                 nutritionInfo.setText(calA1);
             }
         });
-
+/*
+use on click method to  find MaximumCal when user click and bring to the next page
+ */
         MaximumCal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +95,9 @@ public class FoodNutrition_favourites_list extends AppCompatActivity {
                 nutritionInfo.setText(calMa1);
             }
         });
-
+/*
+use on click method to  find MinimumCal when user click and bring to the next page
+ */
         MinimumCal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,13 +108,16 @@ public class FoodNutrition_favourites_list extends AppCompatActivity {
         });
 
 
-        myDB = new FoodDatabaseHelp(this);
+        myDB = new FoodDatabaseHelp(this); // create a new object
         foodDB = myDB.getWritableDatabase();
 
         getSavedFood();
 
     }
-
+/*
+This getSavedFood method is using arrayList to hold the values afetr user to search for
+food name , food Id, food calories, and fat
+ */
     private void getSavedFood(){
         Cursor cursor = myDB.getAllSavedFoods();
 
@@ -117,13 +134,20 @@ public class FoodNutrition_favourites_list extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
     }
-
+/*
+ListViewsavedFoods is a sub class, it will save all of the values from user saved
+ */
     class ListViewSavedFoods extends ArrayAdapter<String>{
 
         public ListViewSavedFoods(Context context) {
             super(context, 0);
         }
 
+
+
+/*
+the getView method will get the view object in food-nutrition_favourites_list
+ */
         @NonNull
         public View getView(final int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = FoodNutrition_favourites_list.this.getLayoutInflater();
@@ -150,7 +174,9 @@ public class FoodNutrition_favourites_list extends AppCompatActivity {
 
 
             });
-
+/*
+use on click method to  find insert the values when user click and bring to the next page
+ */
 
             foodListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -167,25 +193,35 @@ public class FoodNutrition_favourites_list extends AppCompatActivity {
             return view;
         }
 
-
+/*
+use getCount method to hold the number of values
+ */
         public int getCount(){
             return arrayListFoodName.size();
         }
-
+    /*
+    use getSaveFoodName method to hold the foodName
+     */
         public String getSaveFoodName(int position){
             return arrayListFoodName.get(position);
         }
-
+    /*
+    use getSaveFoodCal method to hold the calories of values
+     */
         public String getSaveFoodCal(int position){
             return arrayListCal.get(position);
         }
-
+    /*
+    use getSaveFoodFat method to hold the fat of values
+     */
         public String getSaveFoodFat(int position){
             return arrayListFat.get(position);
         }
     }
 
-
+/*
+the method to calculat of total calories, Average calories, maximum calories, minimum calories
+ */
     private double[] getStatistic(){
         double[] calInfo = new double[4];
         double max = Double.MIN_VALUE;
@@ -212,6 +248,6 @@ public class FoodNutrition_favourites_list extends AppCompatActivity {
             calInfo[1]=0.0;
             calInfo[2]=0.0;
             calInfo[3]=0.0;}
-        return calInfo;
+        return calInfo; // will get all of information
     }
 }

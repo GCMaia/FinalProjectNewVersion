@@ -14,16 +14,21 @@ import java.net.ProtocolException;
 import java.net.URL;
 
 /**
- * Created by Ravi Tamada on 01/09/16.
- * www.androidhive.info
+ * Created by Ying Lu
+ * refrence: www.androidhive.info
  */
 public class HttpHandler {
 
-    private static final String TAG = HttpHandler.class.getSimpleName();
-
+    private static final String TAG = HttpHandler.class.getSimpleName(); // class veriable
+/*
+this is a constrctor of HttpHandler
+ */
     public HttpHandler() {
     }
-
+/*
+this is a method to make the service to call for image. use try to if response of service , then
+use catch the exception message
+ */
     public String makeServiceCall(String reqUrl) {
         String response = null;
         try {
@@ -44,7 +49,11 @@ public class HttpHandler {
         }
         return response;
     }
+/*
+the convertStreamToString method, read them into string from stream, use try the statements where
+an exception can occur
 
+ */
     private String convertStreamToString(InputStream is) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
